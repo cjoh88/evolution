@@ -19,7 +19,7 @@ public class Animal {
 	private Action[] actions;
 	private float[] actionData;
 	
-	private Vector2 position;
+	public Vector2 position;
 	public Vector2 velocity;
 	//public Vector2 velocity;
 	
@@ -42,7 +42,7 @@ public class Animal {
 		);
 		//this.velocity = new Vector2(newVelocity);
 		this.speed = 3.0f;
-		this.color = Color.GOLDENROD;
+		this.color = Color.VIOLET;
 		this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 	}
 	

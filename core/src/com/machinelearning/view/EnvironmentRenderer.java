@@ -12,12 +12,14 @@ public class EnvironmentRenderer {
 	
 	private ShapeRenderer shapeRenderer;
 	private AnimalRenderer animalRenderer;
+	private FoodRenderer foodRenderer;
 	
 	public EnvironmentRenderer(Environment environment, OrthographicCamera camera) {
 		this.environment = environment;
 		this.camera = camera;
 		this.shapeRenderer = new ShapeRenderer();
 		this.animalRenderer = new AnimalRenderer(environment.getAnimals(), camera);
+		this.foodRenderer = new FoodRenderer(environment.getFood(), camera);
 	}
 	
 	public void render() {
@@ -28,6 +30,7 @@ public class EnvironmentRenderer {
 			shapeRenderer.rect(1,1,2,2);
 		shapeRenderer.end();*/
 		animalRenderer.render();
+		foodRenderer.render();
 	}
 
 }

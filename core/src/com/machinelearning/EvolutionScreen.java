@@ -13,6 +13,8 @@ public class EvolutionScreen implements Screen{
 	private EnvironmentRenderer renderer;
 	
 	private OrthographicCamera camera;
+	
+	private float fd = 1.0f / 60.0f;
 
 	@Override
 	public void show() {
@@ -28,7 +30,9 @@ public class EvolutionScreen implements Screen{
 		// TODO Auto-generated method stub
 		Gdx.gl.glClearColor(0, 0.5f, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		environment.update(delta);
+		//environment.update(fd);
 		renderer.render();
 	}
 

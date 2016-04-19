@@ -1,6 +1,8 @@
 package com.machinelearning.model.sensor;
 
 import com.machinelearning.model.Animal;
+import com.machinelearning.model.Environment;
+import com.machinelearning.model.Food;
 
 public class FoodSensor extends Sensor{
 	
@@ -13,11 +15,12 @@ public class FoodSensor extends Sensor{
 	@Override
 	public float readSensorValue(Animal animal) {
 		//TODO Implement
+		Food food = environment.getNearestFood(animal.position);
 		if(c == 'y') {
-			return 0.0f;
+			return food.y() / Environment.HEIGHT;
 		}
 		else {
-			return 1.0f;
+			return food.x() / Environment.WIDTH;
 		}
 	}
 
