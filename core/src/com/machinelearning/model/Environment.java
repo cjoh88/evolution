@@ -14,13 +14,15 @@ public class Environment {
 	
 	// Number of individuals in the population
 	private static final int NUM_INDIVIDUALS = 50;
-	private static final int NUM_FOOD = 10;
+	private static final int NUM_FOOD = 25;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
 	
 	// Height of the environment
 	public static final int HEIGHT = 45;
+	
+	private int step = 0;
 	
 	//public static Random random = new Random();
 	
@@ -63,6 +65,10 @@ public class Environment {
 	}
 	
 	public void update(float delta) {
+		/*if(step % 100 == 0) {
+			System.out.println("Step: " + step);
+		}
+		step++;*/
 		for(Animal animal : animals) {
 			animal.readSensorData();
 		}
@@ -73,6 +79,7 @@ public class Environment {
 			animal.update(delta);
 			//animal.update(1.0f);
 		}
+		
 	}
 	
 	public Animal[] getAnimals() {

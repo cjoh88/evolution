@@ -15,6 +15,7 @@ public class EvolutionScreen implements Screen{
 	private OrthographicCamera camera;
 	
 	private float fd = 1.0f / 60.0f;
+	private boolean render = true;
 
 	@Override
 	public void show() {
@@ -23,6 +24,10 @@ public class EvolutionScreen implements Screen{
 		camera.position.y = Environment.HEIGHT / 2;
 		environment = new Environment();
 		renderer = new EnvironmentRenderer(environment, camera);
+		
+		if(render) {
+			Gdx.graphics.setVSync(true);
+		}
 	}
 
 	@Override
@@ -31,9 +36,14 @@ public class EvolutionScreen implements Screen{
 		Gdx.gl.glClearColor(0, 0.5f, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		environment.update(delta);
-		//environment.update(fd);
-		renderer.render();
+		if(render) {
+			environment.update(delta);
+			renderer.render();
+		}
+		else {
+			environment.update(fd);
+		}
+		//System.out.println(fd);
 	}
 
 	@Override

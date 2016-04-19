@@ -2,7 +2,7 @@ package com.machinelearning.model;
 
 import java.util.Random;
 
-import com.machinelearning.Log;
+import com.machinelearning.Utility;
 
 public class NeuralNetwork {
 	
@@ -33,7 +33,7 @@ public class NeuralNetwork {
 	
 	public float[] execute(float[] input) {
 		if(input.length != numInputs) {
-			Log.log("NeuralNetwork.class: Wrong number of inputs. Expected: " + numInputs + " Received: " + input.length );
+			Utility.log("NeuralNetwork.class: Wrong number of inputs. Expected: " + numInputs + " Received: " + input.length );
 		}
 		float[] hiddenOutput = new float[numHidden];
 		for(int h=0; h<numHidden; h++) {

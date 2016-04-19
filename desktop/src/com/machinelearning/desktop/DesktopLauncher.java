@@ -9,8 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 1920;
 		config.height = 1080;
-		//config.vSyncEnabled = false;
-		//config.foregroundFPS = 0;
+		config.vSyncEnabled = false;
+		config.foregroundFPS = 0;
 		
 		new LwjglApplication(new Evolution(), config);
 	}

@@ -4,13 +4,15 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.machinelearning.Log;
+import com.machinelearning.Utility;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Animal {
 	
 	//TODO Give each animal a unique ID
+	
+	private final long id = Utility.getID();
 	
 	private static Random random = new Random();
 	
@@ -96,7 +98,7 @@ public class Animal {
 		for(Food f : environment.getFood()) {
 			if(position.dst2(f.position) < 0.5f) {
 				//TODO include ID in log
-				Log.log("Food found!");
+				Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
 				fitness += 10;
 				f.found();
 			}
