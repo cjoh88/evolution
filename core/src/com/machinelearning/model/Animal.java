@@ -1,6 +1,12 @@
 package com.machinelearning.model;
 
+import java.util.Random;
+
+import com.badlogic.gdx.math.Vector2;
+
 public class Animal {
+	
+	private static Random random = new Random();
 	
 	private Sensor[] sensors;
 	private float[] sensorData;
@@ -8,11 +14,25 @@ public class Animal {
 	private Action[] actions;
 	private float[] actionData;
 	
+	private Vector2 position;
+	private Vector2 velocity;
+	
+	private float speed;
+	
 	public Animal(Sensor[] sensors, Action[] actions) {
 		this.sensors = sensors;
 		this.actions = actions;
 		this.sensorData = new float[sensors.length];
 		this.actionData = new float[actions.length];
+		this.position = new Vector2(
+			random.nextFloat() * Environment.WIDTH, 
+			random.nextFloat() * Environment.HEIGHT
+		);
+		this.velocity = new Vector2(
+			random.nextFloat() - 0.5f,
+			random.nextFloat() - 0.5f
+		);
+		this.speed = 3.0f;
 	}
 	
 	public void readSensorData() {
@@ -28,7 +48,34 @@ public class Animal {
 	}
 	
 	public void update(float delta) {
-		//TODO Animal.update()
+		velocity.nor();
+		velocity.scl(speed);
+		velocity.scl(delta);
+		position.add(velocity);
+		wrapAround();
+	}
+	
+	private void wrapAround() {
+		if(position.x >= Environment.WIDTH) {
+			position.x -= Environment.WIDTH;
+		}
+		else if (position.x < 0) {
+			position.x += Environment.WIDTH;
+		}
+		if(position.y >= Environment.HEIGHT) {
+			position.y -= Environment.HEIGHT;
+		}
+		else if (position.y < 0) {
+			position.y += Environment.HEIGHT;
+		}
+	}
+	
+	public float x() {
+		return position.x;
+	}
+	
+	public float y() {
+		return position.y;
 	}
 
 }
