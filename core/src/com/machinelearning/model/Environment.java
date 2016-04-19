@@ -22,7 +22,7 @@ public class Environment {
 	// Height of the environment
 	public static final int HEIGHT = 45;
 	
-	public static Random random = new Random();
+	//public static Random random = new Random();
 	
 	/* Add sensors and actions to respective array
 	 * 
@@ -54,14 +54,11 @@ public class Environment {
 		}
 		// Create Animals
 		for(int i=0; i<animals.length; i++) {
-			animals[i] = new Animal(sensors, actions);
+			animals[i] = new Animal(this, sensors, actions);
 		}
 		// Create Food
 		for(int i=0; i<food.length; i++) {
-			food[i] = new Food(new Vector2(
-					random.nextFloat() * WIDTH,
-					random.nextFloat() * HEIGHT
-					));
+			food[i] = new Food();
 		}
 	}
 	
