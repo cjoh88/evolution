@@ -38,7 +38,7 @@ public class Animal {
 		);
 		this.velocity = new Vector2(newVelocity);
 		this.speed = 3.0f;
-		this.color = Color.CORAL;
+		this.color = Color.GOLDENROD;
 	}
 	
 	public void readSensorData() {
