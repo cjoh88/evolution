@@ -1,4 +1,7 @@
-package com.machinelearning.model;
+package com.machinelearning.model.sensor;
+
+import com.machinelearning.model.Animal;
+import com.machinelearning.model.Environment;
 
 public abstract class Sensor {
 	

@@ -4,6 +4,8 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
+import com.machinelearning.model.action.Action;
+import com.machinelearning.model.sensor.Sensor;
 
 public class Animal {
 	
@@ -12,12 +14,14 @@ public class Animal {
 	private Sensor[] sensors;
 	private float[] sensorData;
 	
+	private NeuralNetwork ann;
+	
 	private Action[] actions;
 	private float[] actionData;
 	
 	private Vector2 position;
-	private Vector2 newVelocity;
-	private Vector2 velocity;
+	public Vector2 velocity;
+	//public Vector2 velocity;
 	
 	private float speed;
 	
@@ -32,19 +36,21 @@ public class Animal {
 			random.nextFloat() * Environment.WIDTH, 
 			random.nextFloat() * Environment.HEIGHT
 		);
-		this.newVelocity = new Vector2(
+		this.velocity = new Vector2(
 			random.nextFloat() - 0.5f,
 			random.nextFloat() - 0.5f
 		);
-		this.velocity = new Vector2(newVelocity);
+		//this.velocity = new Vector2(newVelocity);
 		this.speed = 3.0f;
 		this.color = Color.GOLDENROD;
+		this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 	}
 	
 	public void readSensorData() {
 		for(int i=0; i<sensors.length; i++) {
 			sensorData[i] = sensors[i].readSensorValue(this);
 		}
+		actionData = ann.execute(sensorData);
 	}
 	
 	public void executeAction() {
@@ -54,12 +60,12 @@ public class Animal {
 	}
 	
 	public void update(float delta) {
-		newVelocity.nor();
-		newVelocity.scl(speed);
-		newVelocity.scl(delta);
-		position.add(newVelocity);
-		velocity.x = newVelocity.x;
-		velocity.y = newVelocity.y;
+		velocity.nor();
+		velocity.scl(speed);
+		velocity.scl(delta);
+		position.add(velocity);
+		//velocity.x = velocity.x;
+		//velocity.y = velocity.y;
 		wrapAround();
 	}
 	
@@ -89,5 +95,6 @@ public class Animal {
 	public Color color() {
 		return color;
 	}
+	
 
 }

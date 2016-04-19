@@ -1,5 +1,11 @@
 package com.machinelearning.model;
 
+import com.machinelearning.model.sensor.PositionSensor;
+import com.machinelearning.model.action.Action;
+import com.machinelearning.model.action.TurnAction;
+import com.machinelearning.model.sensor.FoodSensor;
+import com.machinelearning.model.sensor.Sensor;
+
 public class Environment {
 	
 	// Number of individuals in the population
@@ -20,8 +26,16 @@ public class Environment {
 	 * 		new Sensor3(),
 	 * 	};
 	 */
-	private final Sensor[] sensors = {};
-	private final Action[] actions = {};
+	private final Sensor[] sensors = {
+			new PositionSensor('x'),		// Sense the animals x position
+			new PositionSensor('y'),		// Sense the animals y position
+			new FoodSensor('x'),			// Sense closest foods x position
+			new FoodSensor('y')				// Sense closest foods y position
+	};
+	private final Action[] actions = {
+			new TurnAction('l'),
+			new TurnAction('r')
+	};
 	
 	private Animal animals[] = new Animal[NUM_INDIVIDUALS];
 	

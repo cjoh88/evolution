@@ -1,4 +1,6 @@
-package com.machinelearning.model;
+package com.machinelearning.model.action;
+
+import com.machinelearning.model.Animal;
 
 public abstract class Action {
 	
