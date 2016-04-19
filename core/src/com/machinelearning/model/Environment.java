@@ -6,6 +6,15 @@ public class Environment {
 	public static final int WIDTH = 80;
 	public static final int HEIGHT = 45;
 	
+	/* Add sensors and actions to respective array
+	 * 
+	 * Example:
+	 * 	private final Sensor[] sensors = {
+	 * 		new Sensor1(),
+	 * 		new Sensor2(),
+	 * 		new Sensor3(),
+	 * 	};
+	 */
 	private final Sensor[] sensors = {};
 	private final Action[] actions = {};
 	
