@@ -2,6 +2,7 @@ package com.machinelearning.model;
 
 import java.util.Random;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
 public class Animal {
@@ -15,9 +16,12 @@ public class Animal {
 	private float[] actionData;
 	
 	private Vector2 position;
+	private Vector2 newVelocity;
 	private Vector2 velocity;
 	
 	private float speed;
+	
+	private Color color;
 	
 	public Animal(Sensor[] sensors, Action[] actions) {
 		this.sensors = sensors;
@@ -28,11 +32,13 @@ public class Animal {
 			random.nextFloat() * Environment.WIDTH, 
 			random.nextFloat() * Environment.HEIGHT
 		);
-		this.velocity = new Vector2(
+		this.newVelocity = new Vector2(
 			random.nextFloat() - 0.5f,
 			random.nextFloat() - 0.5f
 		);
+		this.velocity = new Vector2(newVelocity);
 		this.speed = 3.0f;
+		this.color = Color.CORAL;
 	}
 	
 	public void readSensorData() {
@@ -48,10 +54,12 @@ public class Animal {
 	}
 	
 	public void update(float delta) {
-		velocity.nor();
-		velocity.scl(speed);
-		velocity.scl(delta);
-		position.add(velocity);
+		newVelocity.nor();
+		newVelocity.scl(speed);
+		newVelocity.scl(delta);
+		position.add(newVelocity);
+		velocity.x = newVelocity.x;
+		velocity.y = newVelocity.y;
 		wrapAround();
 	}
 	
@@ -76,6 +84,10 @@ public class Animal {
 	
 	public float y() {
 		return position.y;
+	}
+	
+	public Color color() {
+		return color;
 	}
 
 }

@@ -22,9 +22,11 @@ public class AnimalRenderer {
 		//camera.update();
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
-		shapeRenderer.setColor(1,1,0,1);
+		//shapeRenderer.setColor(1,1,0,1);
 			for(Animal animal : animals) {
-				shapeRenderer.rect(animal.x(), animal.y() , 1, 1);
+				//shapeRenderer.rect(animal.x(), animal.y() , 1, 1);
+				shapeRenderer.setColor(animal.color());
+				shapeRenderer.circle(animal.x(), animal.y(), 0.5f, 10);
 			}
 		shapeRenderer.end();
 	}
