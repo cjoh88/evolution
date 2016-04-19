@@ -2,8 +2,13 @@ package com.machinelearning.model;
 
 public class Environment {
 	
+	// Number of individuals in the population
 	private static final int NUM_INDIVIDUALS = 50;
+	
+	// Width of the environment
 	public static final int WIDTH = 80;
+	
+	// Height of the environment
 	public static final int HEIGHT = 45;
 	
 	/* Add sensors and actions to respective array
@@ -32,7 +37,6 @@ public class Environment {
 	}
 	
 	public void update(float delta) {
-		//TODO three loops or one?
 		for(Animal animal : animals) {
 			animal.readSensorData();
 		}
