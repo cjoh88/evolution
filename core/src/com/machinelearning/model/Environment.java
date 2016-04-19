@@ -24,7 +24,6 @@ public class Environment {
 	
 	private int step = 0;
 	
-	//public static Random random = new Random();
 	
 	/* Add sensors and actions to respective array
 	 * 
