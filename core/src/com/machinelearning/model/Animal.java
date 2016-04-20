@@ -60,6 +60,7 @@ public class Animal {
 		this.ann = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, sensors.length, sensors.length * 2, actions.length);
 		
 		this.fitness = 0;
+		
 	}
 	
 	public void readSensorData() {
