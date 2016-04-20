@@ -111,7 +111,7 @@ public class Animal {
 			if(position.dst2(f.position) < 0.5f) {
 				//TODO include ID in log
 				Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
-				fitness += 10;
+				fitness += 1;
 				f.found();
 			}
 		}

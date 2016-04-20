@@ -2,6 +2,8 @@ package com.machinelearning.model;
 
 import com.machinelearning.model.sensor.PositionSensor;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
@@ -22,6 +24,8 @@ public class Environment {
 	// Height of the environment
 	public static final int HEIGHT = 45;
 	
+	public static final int STEPS_PER_GENERATION = 2000;
+	private int generation = 1;
 	private int step = 0;
 	
 	
@@ -64,10 +68,6 @@ public class Environment {
 	}
 	
 	public void update(float delta) {
-		/*if(step % 100 == 0) {
-			System.out.println("Step: " + step);
-		}
-		step++;*/
 		for(Animal animal : animals) {
 			animal.readSensorData();
 		}
@@ -77,6 +77,16 @@ public class Environment {
 		for(Animal animal : animals) {
 			animal.update(delta);
 			//animal.update(1.0f);
+		}
+		if(step % 100 == 0) {
+			System.out.println("Step: " + step);
+		}
+		step++;
+		if(step >= STEPS_PER_GENERATION) {
+			//TODO Create new generation
+			
+			step = 0;
+			generation++;
 		}
 		
 	}
@@ -101,6 +111,7 @@ public class Environment {
 		}
 		return result;
 	}
+	
 
 }
 
