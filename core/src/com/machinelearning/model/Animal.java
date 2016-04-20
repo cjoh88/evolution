@@ -2,6 +2,9 @@ package com.machinelearning.model;
 
 import java.util.Random;
 
+import org.neuroph.nnet.MultiLayerPerceptron;
+import org.neuroph.util.TransferFunctionType;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.Utility;
@@ -17,12 +20,14 @@ public class Animal {
 	private static Random random = new Random();
 	
 	private Sensor[] sensors;
-	private float[] sensorData;
+	private double[] sensorData;
 	
 	private Action[] actions;
-	private float[] actionData;
+	private double[] actionData;
 	
-	private NeuralNetwork ann;
+	//private NeuralNetwork ann;
+	private MultiLayerPerceptron ann;
+	
 	private int fitness;
 	private Environment environment;
 	
@@ -38,8 +43,8 @@ public class Animal {
 		this.environment = environment;
 		this.sensors = sensors;
 		this.actions = actions;
-		this.sensorData = new float[sensors.length];
-		this.actionData = new float[actions.length];
+		this.sensorData = new double[sensors.length];
+		this.actionData = new double[actions.length];
 		this.position = new Vector2(
 			random.nextFloat() * Environment.WIDTH, 
 			random.nextFloat() * Environment.HEIGHT
@@ -49,9 +54,11 @@ public class Animal {
 			random.nextFloat() - 0.5f
 		);
 		//this.velocity = new Vector2(newVelocity);
-		this.speed = 3.0f;
+		this.speed = 30;//3.0f;
 		this.color = Color.VIOLET;
-		this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
+		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, sensors.length, sensors.length * 2, actions.length);
+		
 		this.fitness = 0;
 	}
 	
@@ -59,12 +66,16 @@ public class Animal {
 		for(int i=0; i<sensors.length; i++) {
 			sensorData[i] = sensors[i].readSensorValue(this);
 		}
-		actionData = ann.execute(sensorData);
+		//actionData = ann.execute(sensorData);
+
+		ann.setInput(sensorData);
+		ann.calculate();
+		actionData = ann.getOutput();
 	}
 	
 	public void executeAction() {
 		for(int i=0; i<actions.length; i++) {
-			actions[i].executeAction(this, actionData[i]);
+			actions[i].executeAction(this, (float) actionData[i]);
 		}
 	}
 	

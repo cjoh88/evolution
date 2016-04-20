@@ -57,6 +57,7 @@ public class NeuralNetwork {
 		for(int i=0; i<numOutputs; i++) {
 			result[i] = (float)Math.tanh(result[i]);
 		}
+		//return new float[]{1,0};
 		return result;
 	}
 
