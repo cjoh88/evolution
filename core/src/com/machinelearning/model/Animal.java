@@ -54,7 +54,7 @@ public class Animal {
 			random.nextFloat() - 0.5f
 		);
 		//this.velocity = new Vector2(newVelocity);
-		this.speed = 30;//3.0f;
+		this.speed = 5;//3.0f;
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 		this.ann = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, sensors.length, sensors.length * 2, actions.length);
