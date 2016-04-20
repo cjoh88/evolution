@@ -71,6 +71,7 @@ public class Animal {
 		ann.setInput(sensorData);
 		ann.calculate();
 		actionData = ann.getOutput();
+		
 	}
 	
 	public void executeAction() {
