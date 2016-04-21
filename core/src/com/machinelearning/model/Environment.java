@@ -16,7 +16,7 @@ import com.machinelearning.model.sensor.Sensor;
 public class Environment {
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS = 50;
+	public static final int NUM_INDIVIDUALS = 250;
 	public static final int NUM_FOOD = 10;
 	
 	// Width of the environment
@@ -25,7 +25,7 @@ public class Environment {
 	// Height of the environment
 	public static final int HEIGHT = 45;
 	
-	public static final int STEPS_PER_GENERATION = 1000;
+	public static final int STEPS_PER_GENERATION = 2000;
 	private int generation = 1;
 	private int step = 0;
 	

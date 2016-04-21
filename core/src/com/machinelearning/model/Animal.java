@@ -57,7 +57,7 @@ public class Animal {
 		this.speed = 5;//3.0f;
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, sensors.length, sensors.length * 2, actions.length);
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length * 2, actions.length);
 		
 		this.fitness = 0;		
 	}

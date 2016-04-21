@@ -41,6 +41,20 @@ public class GA {
 		}
 		System.out.println("ELITISM DONE!!!");
 		
+		/*Här börjar de nya */
+		/*
+		for(int i = ELITISM; i <= population.length-ELITISM; i++){
+			
+			Animal[] numberOfParents = {population[i],population[i+1]};
+			double [] genome = Crossover.weigthedAvg(numberOfParents, 1);
+			Animal p1 = new Animal(population[i].getEnvironment(), population[i].getSensors(), population[i].getActions());
+			mutate(genome);
+			p1.setGenome(genome);
+			newPopulation[index] = p1;
+			index++;
+		
+		}*/
+		/* Gammla */
 		for(int i=0; i<CROSSOVER_PAIRS; i++) {
 			Animal p1 = Selection.rank(population);
 			Animal p2 = Selection.rank(population);
