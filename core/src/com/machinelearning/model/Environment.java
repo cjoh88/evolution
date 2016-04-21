@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
+import com.machinelearning.Utility;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.sensor.FoodSensor;
@@ -15,8 +16,8 @@ import com.machinelearning.model.sensor.Sensor;
 public class Environment {
 	
 	// Number of individuals in the population
-	private static final int NUM_INDIVIDUALS = 50;
-	private static final int NUM_FOOD = 25;
+	public static final int NUM_INDIVIDUALS = 50;
+	public static final int NUM_FOOD = 10;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
@@ -24,7 +25,7 @@ public class Environment {
 	// Height of the environment
 	public static final int HEIGHT = 45;
 	
-	public static final int STEPS_PER_GENERATION = 2000;
+	public static final int STEPS_PER_GENERATION = 1000;
 	private int generation = 1;
 	private int step = 0;
 	
@@ -84,9 +85,10 @@ public class Environment {
 		step++;
 		if(step >= STEPS_PER_GENERATION) {
 			//TODO Create new generation
-			
+			GA.createNewPopulation(animals);
 			step = 0;
 			generation++;
+			Utility.log("Generation " + generation + " has started.");
 		}
 		
 	}
@@ -110,6 +112,14 @@ public class Environment {
 			}
 		}
 		return result;
+	}
+	
+	public Sensor[] getSensors() {
+		return sensors;
+	}
+	
+	public Action[] getActions() {
+		return actions;
 	}
 	
 

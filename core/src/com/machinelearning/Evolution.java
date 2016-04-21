@@ -18,6 +18,7 @@ public class Evolution extends Game {
 		//img = new Texture("badlogic.jpg");
 		mainScreen = new EvolutionScreen();
 		setScreen(mainScreen);
+		
 	}
 
 	@Override
