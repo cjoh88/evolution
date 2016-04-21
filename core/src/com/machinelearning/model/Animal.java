@@ -71,7 +71,6 @@ public class Animal {
 		ann.setInput(sensorData);
 		ann.calculate();
 		actionData = ann.getOutput();
-		
 	}
 	
 	public void executeAction() {
@@ -131,6 +130,30 @@ public class Animal {
 	
 	public int fitness() {
 		return fitness;
+	}
+	
+	public long id() {
+		return id;
+	}
+	
+	public Double[] getGenome() {
+		return ann.getWeights();
+	}
+	
+	public void setGenome(double[] genome) {
+		ann.setWeights(genome);
+	}
+	
+	public Environment getEnvironment() {
+		return environment;
+	}
+	
+	public Sensor[] getSensors() {
+		return sensors;
+	}
+	
+	public Action[] getActions() {
+		return actions;
 	}
 	
 
