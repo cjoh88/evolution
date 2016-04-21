@@ -10,7 +10,7 @@ import com.machinelearning.Utility;
 public class GA {
 	
 	// Number of individuals to preserve unchanged for the next generation
-	private static final int ELITISM = 5;
+	private static final int ELITISM = 3;
 	
 	// Number of pairs selected for crossover
 	private static final int CROSSOVER_PAIRS = 20;
@@ -43,9 +43,10 @@ public class GA {
 		
 		/*Här börjar de nya */
 		/*
-		for(int i = ELITISM; i <= population.length-ELITISM; i++){
+		for(int i = ELITISM; i < population.length; i++){
 			
-			Animal[] numberOfParents = {population[i],population[i+1]};
+			//Animal[] numberOfParents = {population[i],population[i+1]};
+			Animal[] numberOfParents = {Selection.rank(population),Selection.rank(population)};
 			double [] genome = Crossover.weigthedAvg(numberOfParents, 1);
 			Animal p1 = new Animal(population[i].getEnvironment(), population[i].getSensors(), population[i].getActions());
 			mutate(genome);
@@ -55,6 +56,7 @@ public class GA {
 		
 		}*/
 		/* Gammla */
+		
 		for(int i=0; i<CROSSOVER_PAIRS; i++) {
 			Animal p1 = Selection.rank(population);
 			Animal p2 = Selection.rank(population);
