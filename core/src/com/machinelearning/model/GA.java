@@ -13,7 +13,7 @@ public class GA {
 	private static final int ELITISM = 3;
 	
 	// Number of pairs selected for crossover
-	private static final int CROSSOVER_PAIRS = 20;
+	private static final int CROSSOVER_PAIRS = 3;
 	
 	//private static final float MUTATION_RATE = 1.0f / Environment.NUM_INDIVIDUALS;
 	private static final double MUTATION_RANGE = 0.5f;
@@ -37,12 +37,13 @@ public class GA {
 		int index = 0;
 		for(int i=0; i<ELITISM; i++) {
 			newPopulation[index] = population[index];
+			newPopulation[index].setFitness(0);
 			index++;
 		}
 		System.out.println("ELITISM DONE!!!");
 		
 		/*Här börjar de nya */
-		/*
+		
 		for(int i = ELITISM; i < population.length; i++){
 			
 			//Animal[] numberOfParents = {population[i],population[i+1]};
@@ -54,9 +55,9 @@ public class GA {
 			newPopulation[index] = p1;
 			index++;
 		
-		}*/
+		}
 		/* Gammla */
-		
+		/*
 		for(int i=0; i<CROSSOVER_PAIRS; i++) {
 			Animal p1 = Selection.rank(population);
 			Animal p2 = Selection.rank(population);
@@ -75,7 +76,8 @@ public class GA {
 			newPopulation[index+1] = p2;
 			
 			index += 2;
-		}
+			
+		}*/
 		
 		while(index < Environment.NUM_INDIVIDUALS) {
 			newPopulation[index] = new Animal(population[0].getEnvironment(), population[0].getSensors(), population[0].getActions());

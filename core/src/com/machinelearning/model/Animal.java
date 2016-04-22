@@ -54,10 +54,10 @@ public class Animal {
 			random.nextFloat() - 0.5f
 		);
 		//this.velocity = new Vector2(newVelocity);
-		this.speed = 5;//3.0f;
+		this.speed = 15;//3.0f;
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length * 2, actions.length);
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length, actions.length);
 		
 		this.fitness = 0;		
 	}
@@ -109,7 +109,7 @@ public class Animal {
 		for(Food f : environment.getFood()) {
 			if(position.dst2(f.position) < 0.5f) {
 				//TODO include ID in log
-				Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
+				//Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
 				fitness += 1;
 				f.found();
 			}
@@ -130,6 +130,11 @@ public class Animal {
 	
 	public int fitness() {
 		return fitness;
+	}
+	
+	public void setFitness(int a){
+		fitness = a;
+		
 	}
 	
 	public long id() {
