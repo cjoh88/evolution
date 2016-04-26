@@ -62,6 +62,7 @@ public class GA {
   		  
   		  for(int i=0; i<Config.NUM_ELITISM; i++) {
   			  newPop.add(pop[i]);
+  			  newPop.get(i).setFitness(0);
   		  }
   		  
   		  for(int i=0; i<Config.NUM_CROSSOVER_CHILDREN / crossover.numChildren(); i++) {

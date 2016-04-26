@@ -4,6 +4,7 @@ import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.crossover.RandomCrossover;
+import com.machinelearning.model.crossover.WeigthedAvg;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.RandomMutation;
 import com.machinelearning.model.selection.RandomSelection;
@@ -40,13 +41,24 @@ public class Config {
 	public static final Selection2 SELECTION = new RandomSelection();
 	
 	// Crossover function
-	public static final Crossover2 CROSSOVER = new RandomCrossover();
+	public static final Crossover2 CROSSOVER = new WeigthedAvg();
 	
 	// Mutation function
 	public static final Mutation MUTATION = new RandomMutation();
 	
 	// Selection function for the remaining individuals
 	public static final Selection2 END_SELECTION = new RandomSelection();
+	
+	
+	/*Specific settings for WeightedAvg crossover */
+	public static final int WEIGTHEDAVG_PARENTS = 2;
+	public static final int WEIGTHEDAVG_FLAG = 1;
+	/*------------------------------------------- */
+	
+	
+	
+	
+	
 	
 	// The Animals actions
 	public final static Action[] actions = {
@@ -61,4 +73,9 @@ public class Config {
 			new FoodDirectionSensor('x'),	// Sense closest foods direction	x
 			new FoodDirectionSensor('y')	// Sense closest foods direction	y
 	};
+	
+	
+	
+	
+	
 }
