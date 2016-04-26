@@ -33,8 +33,8 @@ public class Config {
 	// Height of the environment
 	public static final int HEIGHT = 45;
 		
-	// Number of time steps per generation
-	public static final int STEPS_PER_GENERATION = 6000;
+	// Number of time in seconds per generation
+	public static final double TIME_PER_GENERATION = 20.0;
 		
 		
 	// Selection function for crossover

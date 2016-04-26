@@ -27,7 +27,7 @@ public class Environment {
 	
 	//public static final int STEPS_PER_GENERATION = 6000;
 	private int generation = 1;
-	private int step = 0;
+	private double time = 0;
 	
 	
 	/* Add sensors and actions to respective array
@@ -72,17 +72,17 @@ public class Environment {
 			animal.update(delta);
 			//animal.update(1.0f);
 		}
-		if(step % 100 == 0) {
+		if(time % 100 == 0) {
 			//System.out.println("Step: " + step);
 		}
-		step++;
-		if(step >= Config.STEPS_PER_GENERATION) {
+		time += delta;
+		if(time >= Config.TIME_PER_GENERATION) {
 			//TODO Create new generation
 			System.out.println(animals[0].fitness());
 			
 			//System.out.println(Arrays.toString(animals[0].getGenome()));
 			ga.compute(animals);
-			step = 0;
+			time = 0;
 			generation++;
 			Utility.log("Generation " + generation + " has started.");
 			
