@@ -46,8 +46,8 @@ public class Animal {
 		this.sensorData = new double[sensors.length];
 		this.actionData = new double[actions.length];
 		this.position = new Vector2(
-			random.nextFloat() * Environment.WIDTH, 
-			random.nextFloat() * Environment.HEIGHT
+			random.nextFloat() * Config.WIDTH, 
+			random.nextFloat() * Config.HEIGHT
 		);
 		this.velocity = new Vector2(
 			random.nextFloat() - 0.5f,
@@ -57,8 +57,12 @@ public class Animal {
 		this.speed = 15;//3.0f;
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length, actions.length);
+
+
 		
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length, actions.length);
+
+
 		this.fitness = 0;		
 	}
 	
@@ -91,17 +95,17 @@ public class Animal {
 	}
 	
 	private void wrapAround() {
-		if(position.x >= Environment.WIDTH) {
-			position.x -= Environment.WIDTH;
+		if(position.x >= Config.WIDTH) {
+			position.x -= Config.WIDTH;
 		}
 		else if (position.x < 0) {
-			position.x += Environment.WIDTH;
+			position.x += Config.WIDTH;
 		}
-		if(position.y >= Environment.HEIGHT) {
-			position.y -= Environment.HEIGHT;
+		if(position.y >= Config.HEIGHT) {
+			position.y -= Config.HEIGHT;
 		}
 		else if (position.y < 0) {
-			position.y += Environment.HEIGHT;
+			position.y += Config.HEIGHT;
 		}
 	}
 	

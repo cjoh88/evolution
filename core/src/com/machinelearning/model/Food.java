@@ -15,15 +15,15 @@ public class Food {
 	
 	public Food() {
 		this.position = new Vector2(
-				random.nextFloat() * Environment.WIDTH,
-				random.nextFloat() * Environment.HEIGHT
+				random.nextFloat() * Config.WIDTH,
+				random.nextFloat() * Config.HEIGHT
 		);
 		color = Color.ORANGE;
 	}
 	
 	public void found() {
-		position.x = random.nextFloat() * Environment.WIDTH;
-		position.y = random.nextFloat() * Environment.HEIGHT;
+		position.x = random.nextFloat() * Config.WIDTH;
+		position.y = random.nextFloat() * Config.HEIGHT;
 	}
 	
 	public float x() {
