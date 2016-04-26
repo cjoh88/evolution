@@ -4,11 +4,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.model.Animal;
 import com.machinelearning.model.Environment;
 
-public class PositionSensor extends Sensor{
+public class DirectionSensor extends Sensor{
 	
 	private char c;
 	
-	public PositionSensor(char c) {
+	public DirectionSensor(char c) {
 		this.c = c;
 	}
 	

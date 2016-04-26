@@ -1,6 +1,6 @@
 package com.machinelearning.model;
 
-import com.machinelearning.model.sensor.PositionSensor;
+import com.machinelearning.model.sensor.DirectionSensor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +10,7 @@ import java.util.Random;
 import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.Utility;
 import com.machinelearning.model.action.Action;
-import com.machinelearning.model.action.TurnAction;
-import com.machinelearning.model.sensor.FoodSensor;
+import com.machinelearning.model.sensor.FoodDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Environment {
@@ -40,16 +39,6 @@ public class Environment {
 	 * 		new Sensor3(),
 	 * 	};
 	 */
-	private final Sensor[] sensors = {
-			new PositionSensor('x'),		// Sense the animals x position
-			new PositionSensor('y'),		// Sense the animals y position
-			new FoodSensor('x'),			// Sense closest foods x position
-			new FoodSensor('y')				// Sense closest foods y position
-	};
-	private final Action[] actions = {
-			new TurnAction('l'),			// Turn left
-			new TurnAction('r')				// Turn right
-	};
 	
 	private Animal animals[] = new Animal[Config.NUM_INDIVIDUALS];
 	private Food food[] = new Food[Config.NUM_FOOD];
@@ -58,12 +47,12 @@ public class Environment {
 	
 	public Environment() {
 		// Initialize Sensors
-		for(Sensor s : sensors) {
+		for(Sensor s : Config.sensors) {
 			s.setEnvironment(this);
 		}
 		// Create Animals
 		for(int i=0; i<Config.NUM_INDIVIDUALS; i++) {
-			animals[i] = new Animal(this, sensors, actions);
+			animals[i] = new Animal(this, Config.sensors, Config.actions);
 		}
 		// Create Food
 		for(int i=0; i<food.length; i++) {
@@ -124,11 +113,11 @@ public class Environment {
 	}
 	
 	public Sensor[] getSensors() {
-		return sensors;
+		return Config.sensors;
 	}
 	
 	public Action[] getActions() {
-		return actions;
+		return Config.actions;
 	}
 	
 

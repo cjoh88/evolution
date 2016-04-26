@@ -5,11 +5,11 @@ import com.machinelearning.model.Animal;
 import com.machinelearning.model.Environment;
 import com.machinelearning.model.Food;
 
-public class FoodSensor extends Sensor{
+public class FoodDirectionSensor extends Sensor{
 	
 	private char c;
 	
-	public FoodSensor(char c) {
+	public FoodDirectionSensor(char c) {
 		this.c = c;
 	}
 	
