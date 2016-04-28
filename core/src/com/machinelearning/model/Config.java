@@ -6,6 +6,7 @@ import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.crossover.OnePoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.RandomMutation;
+import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
@@ -37,7 +38,7 @@ public class Config {
 		
 		
 	// Selection function for crossover
-	public static final Selection2 SELECTION = new RandomSelection();
+	public static final Selection2 SELECTION = new BestBreedAll();
 	
 	// Crossover function
 	public static final Crossover2 CROSSOVER = new OnePoint();
