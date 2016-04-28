@@ -46,6 +46,10 @@ public class Config {
 	// Mutation function
 	public static final Mutation MUTATION = new RandomMutation();
 	
+	public static final float MUTATION_RATE = 1.0f / NUM_INDIVIDUALS;
+	public static final double MUTATION_RANGE = 0.5f;
+	/*----------------------------------------------------------------*/
+	
 	// Selection function for the remaining individuals
 	public static final Selection2 END_SELECTION = new RandomSelection();
 	

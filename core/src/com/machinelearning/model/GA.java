@@ -54,7 +54,7 @@ public class GA {
 	  }
   	  
   	  public void compute(Animal[] pop){
-  		  //TODO Sort pop
+  		  
   		
   		  Arrays.sort(pop, fitnessComparator);
   		  
