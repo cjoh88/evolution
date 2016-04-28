@@ -78,6 +78,10 @@ public class GA {
   			  newPop.add(a);
   		  }
   		  
+  		  for(Animal a : newPop.subList(Config.NUM_ELITISM, Config.NUM_INDIVIDUALS-1)) {
+  			  mutation.mutate(a);
+  		  }
+  		  
   		  //newPop.addAll(endSelect.select((ArrayList<Animal>)pop.subList(Config.NUM_ELITISM, pop.size()),pop.size()-newPop.size()));
   		  
   		  //TODO pop and newPop must be same length
