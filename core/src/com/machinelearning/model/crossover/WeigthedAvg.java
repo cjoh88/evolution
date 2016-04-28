@@ -28,7 +28,7 @@ public class WeigthedAvg implements Crossover2 {
 			
 			for(int i =0; i<weigthsChild.length; i++){ //Calculate weigths for the child
 				for(int d = 0; d< numberofParents; d++){
-					weigthsChild[i] += WeigthProbPerParent[d] * (input[d].getGenome())[i].doubleValue();
+					weigthsChild[i] += WeigthProbPerParent[d] * (input[d].getGenome())[i];
 				}
 			}
 				
@@ -37,7 +37,7 @@ public class WeigthedAvg implements Crossover2 {
 				
 				for(int i =0; i<weigthsChild.length; i++){ //Calculate weigths for the child
 					for(int d = 0; d < numberofParents; d++){
-						weigthsChild[i] +=  (input[d].getGenome())[i].doubleValue();
+						weigthsChild[i] +=  (input[d].getGenome())[i];
 					}
 					weigthsChild[i] = weigthsChild[i]/numberofParents;
 				}

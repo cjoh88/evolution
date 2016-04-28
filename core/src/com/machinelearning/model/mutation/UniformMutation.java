@@ -7,7 +7,7 @@ import com.machinelearning.model.Config;
 public class UniformMutation implements Mutation {
 
 	public Animal mutate(Animal input) {
-		double[] genome = convert(input.getGenome());
+		double[] genome = input.getGenome();
 		
 		double p = 1.0 / genome.length;
 		for(int i=0; i<genome.length; i++) {
@@ -19,15 +19,15 @@ public class UniformMutation implements Mutation {
 		return input;
 	}
 	
-	private double[] convert(Double[] a){
-		double[] genome = new double[a.length];
-		for(int i =0; i<genome.length; i++){
-			genome[i] = a[i];
-			
-		}
-		
-		return genome;
-		
-	}
+//	private double[] convert(Double[] a){
+//		double[] genome = new double[a.length];
+//		for(int i =0; i<genome.length; i++){
+//			genome[i] = a[i];
+//			
+//		}
+//		
+//		return genome;
+//		
+//	}
 	
 }
