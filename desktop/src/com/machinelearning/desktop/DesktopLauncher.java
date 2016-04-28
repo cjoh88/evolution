@@ -3,6 +3,8 @@ package com.machinelearning.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.machinelearning.Evolution;
+import com.machinelearning.diversity.ShannonWienerDiversity;
+import com.machinelearning.model.Animal;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
@@ -14,5 +16,7 @@ public class DesktopLauncher {
 		config.backgroundFPS = 0;
 		
 		new LwjglApplication(new Evolution(), config);
+		
+
 	}
 }
