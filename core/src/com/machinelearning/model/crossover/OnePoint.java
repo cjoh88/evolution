@@ -10,15 +10,26 @@ public class OnePoint implements Crossover2 {
 	@Override
 	public Animal[] cross(Animal[] input) {
 		
-	    double[] w1 = input[0].getGenome();	
-	    double[] w2 = input[1].getGenome();	
-	    double[] wChild = input[0].getGenome();	  
+		double[][] w = new double[2][];
+		
+		w[0] = input[0].getGenome();	
+		w[1] = input[1].getGenome();	
+		double[] wChild;
+
+		//Randomize parent order
+    	int ID = ran.nextInt((2));	
+    	
+	    if(ID==1){
+	    	wChild = input[0].getGenome();	  
+	    }else{
+	    	wChild = input[1].getGenome();	  
+	    }
 	    
-	    
-	    int crossPoint = ran.nextInt(w1.length - 1) + 1;
+	    //Set X-point
+	    int crossPoint = ran.nextInt(wChild.length - 1) + 1;
 	    
 		for(int i = crossPoint; i<wChild.length; i++)
-				wChild[i] = w2[i];
+				wChild[i] = w[ID][i];
 				
 		Animal[] child = {new Animal(input[0].getEnvironment(), input[0].getSensors(), input[0].getActions())};
 		child[0].setGenome(wChild);
