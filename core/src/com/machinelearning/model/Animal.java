@@ -2,6 +2,7 @@ package com.machinelearning.model;
 
 import java.util.Random;
 
+import org.neuroph.core.Weight;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.TransferFunctionType;
 
@@ -58,8 +59,6 @@ public class Animal {
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 
-
-		
 		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length, actions.length);
 
 
@@ -145,11 +144,18 @@ public class Animal {
 		return id;
 	}
 	
-	public Double[] getGenome() {
-		return ann.getWeights();
+	public double[] getGenome() {
+		Double[] a = ann.getWeights();
+		 
+		double[] genome = new double[a.length];
+		for(int i =0; i<genome.length; i++)
+			genome[i] = a[i];	
+		
+		return genome;
 	}
 	
 	public void setGenome(double[] genome) {
+
 		ann.setWeights(genome);
 	}
 	
