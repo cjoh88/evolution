@@ -14,7 +14,8 @@ import com.machinelearning.model.sensor.Sensor;
 
 public class Animal {
 	
-	//TODO Give each animal a unique ID
+	public static final Color ANIMAL_COLOR = Color.VIOLET;
+	public static final Color BEST_COLOR = Color.RED;
 	
 	private final long id = Utility.getID();
 	
@@ -129,6 +130,14 @@ public class Animal {
 	
 	public Color color() {
 		return color;
+	}
+	
+	public void resetColor() {
+		color = ANIMAL_COLOR;
+	}
+	
+	public void setAsHighestFitness() {
+		color = BEST_COLOR;
 	}
 	
 	public int fitness() {

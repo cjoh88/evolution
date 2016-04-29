@@ -37,6 +37,8 @@ public class GA {
 	  Mutation mutation; 
 	  int generation; 
 	  
+	  private Animal highestFitness = null;
+	  
 	  	  
 	  private static Comparator<Animal> fitnessComparator = new Comparator<Animal>() {
 			@Override
@@ -55,8 +57,14 @@ public class GA {
   	  
   	  public void compute(Animal[] pop){
   		  
+  		  if(highestFitness != null) {
+  			  highestFitness.resetColor();
+  		  }
   		
   		  Arrays.sort(pop, fitnessComparator);
+  		  
+  		  highestFitness = pop[0];
+  		  highestFitness.setAsHighestFitness();
   		  
   		  ArrayList<Animal> newPop = new ArrayList<Animal>();
   		  
