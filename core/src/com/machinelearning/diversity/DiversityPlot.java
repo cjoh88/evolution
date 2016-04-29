@@ -15,15 +15,18 @@ import org.jfree.data.xy.XYSeriesCollection;
 import com.machinelearning.model.Animal;
 
 public class DiversityPlot {
-    ShannonWienerDiversity SWD = new ShannonWienerDiversity();
-    static XYSeries values = new XYSeries( "Values" );  
-    DiversityPlot(){
+	
+	  static XYSeries values = new XYSeries( "Values" );
+	  ShannonWienerDiversity SWD = new ShannonWienerDiversity();
+    public DiversityPlot(){
+        
+       
         
         XYSeriesCollection dataset = new XYSeriesCollection(values);    
         JFreeChart chart = ChartFactory.createXYLineChart(
                 "" ,
-                "Diversity" ,
                 "Generation" ,
+                "Diversity" ,
                 dataset ,
                 PlotOrientation.VERTICAL ,
                 true , true , false
@@ -45,11 +48,14 @@ public class DiversityPlot {
     }
 
 
-        public void plot(Animal[] animals, int generation) {
+    public void plot(Animal[] animals, int generation) {
         	
         	   double[] div_eve = SWD.calculateDiversity(animals);
-               values.addOrUpdate(generation, div_eve[0]);
-              }
-        }
+        	   System.out.println("Diversity: " + div_eve[0]);
+        	   values.addOrUpdate(generation, (int) div_eve[0]);
+    }
+       
+
+}
     
 

@@ -1,16 +1,9 @@
 package com.machinelearning.model;
 
-import com.machinelearning.model.sensor.DirectionSensor;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
-
 import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.Utility;
+import com.machinelearning.diversity.DiversityPlot;
 import com.machinelearning.model.action.Action;
-import com.machinelearning.model.sensor.FoodDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Environment {
@@ -28,6 +21,7 @@ public class Environment {
 	//public static final int STEPS_PER_GENERATION = 6000;
 	private int generation = 1;
 	private double time = 0;
+	private DiversityPlot DP = new DiversityPlot();
 	
 	
 	/* Add sensors and actions to respective array
@@ -81,8 +75,11 @@ public class Environment {
 			System.out.println(animals[0].fitness());
 			
 			//System.out.println(Arrays.toString(animals[0].getGenome()));
+			DP.plot(animals, generation);
 			ga.compute(animals);
 			time = 0;
+			
+			
 			generation++;
 			Utility.log("Generation " + generation + " has started.");
 			

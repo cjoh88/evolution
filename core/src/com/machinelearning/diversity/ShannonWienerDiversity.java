@@ -4,6 +4,11 @@ import com.machinelearning.model.Animal;
 
 public class ShannonWienerDiversity implements Diversity {
 
+	public ShannonWienerDiversity(){
+		
+	}
+	
+	
 	@Override
 	public double[] calculateDiversity(Animal[] population) {
 		
@@ -18,10 +23,14 @@ public class ShannonWienerDiversity implements Diversity {
 		for(int i = 0; i<genotypeLength; i++){
 			
 			for (int d = 0; d<population.length; d++){
-				genes[d] = (population[d].getGenome())[i];
+				double [] de = population[d].getGenome();
+				genes[d] = de[i];
+				//System.out.println("Genes " + genes[d]);
 				sum += genes[d];
+				
 			}
 			diversity += calculateSW(sum, genes);
+			System.out.println("Diversity HEJ" + diversity);
 			eveness += diversity / Math.log(population.length);
 			
 		}
@@ -76,7 +85,13 @@ public class ShannonWienerDiversity implements Diversity {
 		double diversitySum = 0;
 		for(int i = 0; i<genes.length; i++){
 			genes[i] = genes[i] / sum;
-			genes[i] = genes[i] * Math.log(genes[i]);
+			
+			
+			
+			
+			genes[i] = genes[i] * Math.log(Math.abs(genes[i])); //Using ABS is not really good
+			
+		
 			diversitySum += genes[i];
 		}
 	
