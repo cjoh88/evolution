@@ -1,11 +1,11 @@
 package com.machinelearning.model;
 
 import com.machinelearning.model.action.Action;
+import com.machinelearning.model.action.SpeedAction;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.crossover.WeigthedAvg;
 import com.machinelearning.model.mutation.Mutation;
-import com.machinelearning.model.mutation.RandomMutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
@@ -68,7 +68,8 @@ public class Config {
 	// The Animals actions
 	public final static Action[] actions = {
 			new TurnAction('l'),			// Turn left
-			new TurnAction('r')				// Turn right
+			new TurnAction('r'),				// Turn right
+			new SpeedAction()
 	};
 	
 	// The Animals sensors

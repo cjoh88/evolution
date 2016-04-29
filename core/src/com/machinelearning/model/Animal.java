@@ -37,6 +37,7 @@ public class Animal {
 	public Vector2 velocity;
 	//public Vector2 velocity;
 	
+	private static final float MAX_SPEED = 15.0f;
 	private float speed;
 	
 	private Color color;
@@ -56,7 +57,7 @@ public class Animal {
 			random.nextFloat() - 0.5f
 		);
 		//this.velocity = new Vector2(newVelocity);
-		this.speed = 15;//3.0f;
+		this.speed = Utility.random.nextFloat() * getMaxSpeed();//3.0f;
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 
@@ -207,6 +208,18 @@ public class Animal {
 	
 	public Action[] getActions() {
 		return actions;
+	}
+	
+	public float getMaxSpeed() {
+		return MAX_SPEED;
+	}
+	
+	public void setSpeed(float s) {
+		speed = s;
+	}
+	
+	public float getSpeed() {
+		return speed;
 	}
 	
 
