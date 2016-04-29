@@ -60,10 +60,19 @@ public class Animal {
 		this.color = Color.VIOLET;
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length, actions.length);
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length*2, actions.length);
 
 
 		this.fitness = 0;		
+	}
+	
+	public Animal copy() {
+		double[] g = getGenome();
+		double[] ng = new double[g.length];
+		System.arraycopy(g, 0, ng, 0, g.length);
+		Animal a = new Animal(environment, sensors, actions);
+		a.setGenome(ng);
+		return a;
 	}
 	
 	public void readSensorData() {
@@ -90,8 +99,28 @@ public class Animal {
 		position.add(velocity);
 		//velocity.x = velocity.x;
 		//velocity.y = velocity.y;
-		wrapAround();
+		//wrapAround();
+		checkBounds();
 		hasFoundFood();
+	}
+	
+	private void checkBounds() {
+		if(position.x >= Config.WIDTH) {
+			position.x = Config.WIDTH - 0.1f;
+			velocity.scl(-1);
+		}
+		else if (position.x < 0) {
+			position.x = 0.1f;
+			velocity.scl(-1);
+		}
+		if(position.y >= Config.HEIGHT) {
+			position.y = Config.HEIGHT - 0.1f;
+			velocity.scl(-1);
+		}
+		else if (position.y < 0) {
+			position.y = 0.1f;
+			velocity.scl(-1);
+		}
 	}
 	
 	private void wrapAround() {

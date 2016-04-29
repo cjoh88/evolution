@@ -83,7 +83,7 @@ public class GA {
   		  
   		  Animal[] rest = endSelect.select(pop, pop.length - newPop.size());
   		  for(Animal a : rest) {
-  			  newPop.add(a);
+  			  newPop.add(a.copy());
   		  }
   		  
   		  for(Animal a : newPop.subList(Config.NUM_ELITISM, Config.NUM_INDIVIDUALS-1)) {
