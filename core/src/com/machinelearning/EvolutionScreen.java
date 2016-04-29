@@ -39,7 +39,7 @@ public class EvolutionScreen implements Screen{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		if(render) {
-			environment.update(delta);
+			environment.update(fd);
 			renderer.render();
 		}
 		else {
