@@ -43,7 +43,7 @@ public class RankSelection implements Selection2 {
 		for(int a=1; a<=input.length; a++) {
 			sum += a;
 			if(sum > x) {
-				b = Config.NUM_INDIVIDUALS - 1 - a;
+				b = Config.NUM_INDIVIDUALS - a;
 				break;
 			}
 		}
