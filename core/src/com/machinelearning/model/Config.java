@@ -3,14 +3,14 @@ package com.machinelearning.model;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
-import com.machinelearning.model.crossover.RandomCrossover;
-import com.machinelearning.model.crossover.WeigthedAvg;
+import com.machinelearning.model.crossover.OnePoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.RandomMutation;
+import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.Selection2;
-import com.machinelearning.model.sensor.FoodDirectionSensor;
 import com.machinelearning.model.sensor.DirectionSensor;
+import com.machinelearning.model.sensor.FoodDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Config {
@@ -38,13 +38,17 @@ public class Config {
 		
 		
 	// Selection function for crossover
-	public static final Selection2 SELECTION = new RandomSelection();
+	public static final Selection2 SELECTION = new BestBreedAll();
 	
 	// Crossover function
-	public static final Crossover2 CROSSOVER = new WeigthedAvg();
+	public static final Crossover2 CROSSOVER = new OnePoint();
 	
 	// Mutation function
 	public static final Mutation MUTATION = new RandomMutation();
+	
+	public static final float MUTATION_RATE = 1.0f / NUM_INDIVIDUALS;
+	public static final double MUTATION_RANGE = 0.5f;
+	/*----------------------------------------------------------------*/
 	
 	// Selection function for the remaining individuals
 	public static final Selection2 END_SELECTION = new RandomSelection();
