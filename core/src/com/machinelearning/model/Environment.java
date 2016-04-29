@@ -72,7 +72,7 @@ public class Environment {
 		time += delta;
 		if(time >= Config.TIME_PER_GENERATION) {
 			//TODO Create new generation
-			System.out.println(animals[0].fitness());
+		
 			
 			//System.out.println(Arrays.toString(animals[0].getGenome()));
 			DP.plot(animals, generation);

@@ -62,6 +62,7 @@ public class GA {
   		  }
   		
   		  Arrays.sort(pop, fitnessComparator);
+  		 System.out.println(pop[0].fitness());
   		  
   		  highestFitness = pop[0];
   		  highestFitness.setAsHighestFitness();

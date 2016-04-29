@@ -3,9 +3,10 @@ package com.machinelearning.model;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
-import com.machinelearning.model.crossover.OnePoint;
+import com.machinelearning.model.crossover.WeigthedAvg;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.RandomMutation;
+import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.Selection2;
@@ -16,16 +17,16 @@ import com.machinelearning.model.sensor.Sensor;
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM = 3;
+	public final static int NUM_ELITISM = 10;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN = 7;
+	public final static int NUM_CROSSOVER_CHILDREN = 45;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS = 10;
+	public static final int NUM_INDIVIDUALS = 60;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_FOOD = 8;
+	public static final int NUM_FOOD = 30;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
@@ -41,13 +42,13 @@ public class Config {
 	public static final Selection2 SELECTION = new BestBreedAll();
 	
 	// Crossover function
-	public static final Crossover2 CROSSOVER = new OnePoint();
+	public static final Crossover2 CROSSOVER = new WeigthedAvg();
 	
 	// Mutation function
-	public static final Mutation MUTATION = new RandomMutation();
+	public static final Mutation MUTATION = new UniformMutation();
 	
-	public static final float MUTATION_RATE = 1.0f / NUM_INDIVIDUALS;
-	public static final double MUTATION_RANGE = 0.5f;
+	public static final float MUTATION_RATE = 0.0f / NUM_INDIVIDUALS;
+	public static final double MUTATION_RANGE = 0.3f;
 	/*----------------------------------------------------------------*/
 	
 	// Selection function for the remaining individuals
