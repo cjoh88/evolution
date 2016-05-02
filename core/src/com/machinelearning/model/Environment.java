@@ -1,5 +1,8 @@
 package com.machinelearning.model;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.Utility;
 import com.machinelearning.diversity.DiversityPlot;
@@ -95,6 +98,9 @@ public class Environment {
 		
 			
 			if(Config.PLOT_STATS){
+				 Arrays.sort(prey, fitnessComparator);
+				 Arrays.sort(pred, fitnessComparator);
+				
 				int tmpFit=0;
 				for (int i = 0; i < prey.length; i++) 
 					tmpFit += prey[i].fitness();
@@ -102,20 +108,18 @@ public class Environment {
 				
 				statPlotPrey.addFitness(tmpFit, prey[0].fitness(), generation);
 				
-				
 				tmpFit=0;
 				for (int i = 0; i < pred.length; i++) 
 					tmpFit += pred[i].fitness();
 				tmpFit = tmpFit/pred.length;
 				statPlotPredator.addFitness(tmpFit, pred[0].fitness(), generation);
+
+				DP.plot(prey, generation);
 			}
 			
-			//System.out.println(Arrays.toString(animals[0].getGenome()));
-			DP.plot(prey, generation);
 			gaPrey.compute(prey);
 			gaPred.compute(pred);
 			time = 0;
-			
 			
 			generation++;
 			Utility.log("Generation " + generation + " has started.");
@@ -124,6 +128,13 @@ public class Environment {
 		}
 		
 	}
+	
+  private static Comparator<Animal> fitnessComparator = new Comparator<Animal>() {
+		@Override
+		public int compare(Animal a1, Animal a2) {
+			return Float.compare(a2.fitness(), a1.fitness());
+		}
+	};
 	
 	public Animal[] getPrey() {
 		return prey;

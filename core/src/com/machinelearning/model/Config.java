@@ -19,25 +19,25 @@ import com.machinelearning.model.sensor.Sensor;
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PREY = 5;
+	public final static int NUM_ELITISM_PREY = 4;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 25;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 21;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 40;
+	public static final int NUM_INDIVIDUALS_PREY = 25;
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 2;
+	public final static int NUM_ELITISM_PRED = 4;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 6;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 11;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 10;
+	public static final int NUM_INDIVIDUALS_PRED = 15;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_PLANT = 10;
+	public static final int NUM_PLANT = 15;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
@@ -47,6 +47,9 @@ public class Config {
 		
 	// Number of time in seconds per generation
 	public static final double TIME_PER_GENERATION = 20.0;
+	
+	// Penalty for being eaten
+	public static final double EATEN_PENALTY = 1.0;
 	
 	// Plot fitness information in a graph
 	public static final boolean PLOT_STATS = true;
@@ -61,8 +64,8 @@ public class Config {
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();
 	
-	public static final float MUTATION_RATE = 0.0f / NUM_INDIVIDUALS_PREY;
-	public static final double MUTATION_RANGE = 0.3f;
+	public static final float MUTATION_RATE = 1f / NUM_INDIVIDUALS_PREY;
+	public static final double MUTATION_RANGE = 0.25f;
 	/*----------------------------------------------------------------*/
 	
 	// Selection function for the remaining individuals

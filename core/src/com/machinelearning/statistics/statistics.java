@@ -31,9 +31,9 @@ public class statistics {
 	}
 
 	
-	public void addFitness(double averageFit, double bestFit, int generation){
-		series1.add(generation, averageFit);
-		series2.add(generation, bestFit);
+	public void addFitness(double fitAVG, double fitBEST, int generation){
+			series1.add(generation, fitAVG);
+			series2.add(generation, fitBEST);
 		
 	}
 	

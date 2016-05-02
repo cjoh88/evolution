@@ -9,7 +9,8 @@ public class UniformMutation implements Mutation {
 	public Animal mutate(Animal input) {
 		double[] genome = input.getGenome();
 		
-		double p = 1.0 / genome.length;
+		double p = Config.MUTATION_RATE;//= 1.0 / genome.length;
+		
 		for(int i=0; i<genome.length; i++) {
 			if(Utility.random.nextDouble() <= p * 10) {
 				genome[i] += Utility.random.nextDouble() * Config.MUTATION_RANGE * 2 - Config.MUTATION_RANGE;

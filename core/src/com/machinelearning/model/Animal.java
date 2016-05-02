@@ -168,7 +168,7 @@ public class Animal implements Food {
 	}
 	
 	public void resetColor() {
-		if(food[0] instanceof Plant){
+		if(food.length==0 || food[0] instanceof Plant){
 			this.color = PREY_COLOR;
 		}
 		else {
@@ -178,7 +178,7 @@ public class Animal implements Food {
 	}
 	
 	public void setAsHighestFitness() {
-		if(food[0] instanceof Plant){
+		if(food.length==0 || food[0] instanceof Plant){
 			this.color = BEST_PREY_COLOR;
 		}
 		else {
@@ -244,7 +244,7 @@ public class Animal implements Food {
 
 	@Override
 	public void eaten() {
-		fitness -= 1;
+		fitness -= Config.EATEN_PENALTY;
 		position.x = Utility.random.nextFloat() * Config.WIDTH;
 		position.y = Utility.random.nextFloat() * Config.HEIGHT;
 	}
