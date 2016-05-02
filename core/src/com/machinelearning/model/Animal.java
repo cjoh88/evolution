@@ -2,7 +2,6 @@ package com.machinelearning.model;
 
 import java.util.Random;
 
-import org.neuroph.core.Weight;
 import org.neuroph.nnet.MultiLayerPerceptron;
 import org.neuroph.util.TransferFunctionType;
 
@@ -12,10 +11,13 @@ import com.machinelearning.Utility;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
 
-public class Animal {
+public class Animal implements Food {
 	
-	public static final Color ANIMAL_COLOR = Color.VIOLET;
-	public static final Color BEST_COLOR = Color.RED;
+	public static final Color PREY_COLOR = Color.VIOLET;
+	public static final Color BEST_PREY_COLOR = Color.RED;
+	
+	public static final Color PRED_COLOR = Color.BLUE;
+	public static final Color BEST_PRED_COLOR = Color.BLACK;
 	
 	private final long id = Utility.getID();
 	
@@ -33,6 +35,8 @@ public class Animal {
 	private int fitness;
 	private Environment environment;
 	
+	private Food[] food;
+	
 	public Vector2 position;
 	public Vector2 velocity;
 	//public Vector2 velocity;
@@ -42,10 +46,11 @@ public class Animal {
 	
 	private Color color;
 	
-	public Animal(Environment environment, Sensor[] sensors, Action[] actions) {
+	public Animal(Environment environment, Sensor[] sensors, Action[] actions, Food[] food) {
 		this.environment = environment;
 		this.sensors = sensors;
 		this.actions = actions;
+		this.food = food;
 		this.sensorData = new double[sensors.length];
 		this.actionData = new double[actions.length];
 		this.position = new Vector2(
@@ -58,7 +63,7 @@ public class Animal {
 		);
 		//this.velocity = new Vector2(newVelocity);
 		this.speed = Utility.random.nextFloat() * getMaxSpeed();//3.0f;
-		this.color = Color.VIOLET;
+		resetColor();
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 
 		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length*2, actions.length);
@@ -71,7 +76,7 @@ public class Animal {
 		double[] g = getGenome();
 		double[] ng = new double[g.length];
 		System.arraycopy(g, 0, ng, 0, g.length);
-		Animal a = new Animal(environment, sensors, actions);
+		Animal a = new Animal(environment, sensors, actions, food);
 		a.setGenome(ng);
 		return a;
 	}
@@ -140,12 +145,12 @@ public class Animal {
 	}
 	
 	public void hasFoundFood() {
-		for(Food f : environment.getFood()) {
-			if(position.dst2(f.position) < 0.5f) {
+		for(Food f : food) {
+			if(position.dst2(f.getPosition()) < 0.5f) {
 				//TODO include ID in log
 				//Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
 				fitness += 1;
-				f.found();
+				f.eaten();
 			}
 		}
 	}
@@ -163,11 +168,21 @@ public class Animal {
 	}
 	
 	public void resetColor() {
-		color = ANIMAL_COLOR;
+		if(food[0] instanceof Plant){
+			this.color = PREY_COLOR;
+		}
+		else {
+			this.color = PRED_COLOR;
+		}
 	}
 	
 	public void setAsHighestFitness() {
-		color = BEST_COLOR;
+		if(food[0] instanceof Plant){
+			this.color = BEST_PREY_COLOR;
+		}
+		else {
+			this.color = BEST_PRED_COLOR;
+		}
 	}
 	
 	public int fitness() {
@@ -222,5 +237,19 @@ public class Animal {
 		return speed;
 	}
 	
+	public Food[] getFood() {
+		return food;
+	}
 
+	@Override
+	public void eaten() {
+		fitness -= 3;
+		position.x = Utility.random.nextFloat() * Config.WIDTH;
+		position.y = Utility.random.nextFloat() * Config.HEIGHT;
+	}
+
+	@Override
+	public Vector2 getPosition() {
+		return position;
+	}
 }

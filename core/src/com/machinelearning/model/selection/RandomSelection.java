@@ -12,7 +12,7 @@ public class RandomSelection implements Selection2 {
 		Animal[] a = new Animal[returnCount];
 		for(int i=0; i<returnCount; i++) {
 			//a[i] = input[i];
-			a[i] = new Animal(input[0].getEnvironment(), input[0].getSensors(), input[0].getActions());
+			a[i] = new Animal(input[0].getEnvironment(), input[0].getSensors(), input[0].getActions(), input[0].getFood());
 		}
 		return a;
 	}

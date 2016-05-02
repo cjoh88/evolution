@@ -34,10 +34,12 @@ public class Environment {
 	 * 	};
 	 */
 	
-	private Animal animals[] = new Animal[Config.NUM_INDIVIDUALS];
-	private Food food[] = new Food[Config.NUM_FOOD];
+	private Animal prey[] = new Animal[Config.NUM_INDIVIDUALS_PREY];
+	private Animal pred[] = new Animal[Config.NUM_INDIVIDUALS_PRED];
+	private Plant food[] = new Plant[Config.NUM_PLANT];
 	
-	private GA ga;
+	private GA gaPrey;
+	private GA gaPred;
 	
 	public Environment() {
 		// Initialize Sensors
@@ -45,29 +47,40 @@ public class Environment {
 			s.setEnvironment(this);
 		}
 		// Create Animals
-		for(int i=0; i<Config.NUM_INDIVIDUALS; i++) {
-			animals[i] = new Animal(this, Config.sensors, Config.actions);
+		for(int i=0; i<Config.NUM_INDIVIDUALS_PREY; i++) {
+			prey[i] = new Animal(this, Config.sensors, Config.actions, food);
+		}
+		for(int i=0; i<Config.NUM_INDIVIDUALS_PRED; i++) {
+			pred[i] = new Animal(this, Config.sensors, Config.actions, prey);
 		}
 		// Create Food
 		for(int i=0; i<food.length; i++) {
-			food[i] = new Food();
+			food[i] = new Plant();
 		}
-		ga = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
+		gaPrey = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
+		gaPred = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
 	}
 	
 	public void update(float delta) {
-		for(Animal animal : animals) {
+		for(Animal animal : prey) {
 			animal.readSensorData();
 		}
-		for(Animal animal : animals) {
+		for(Animal animal : pred) {
+			animal.readSensorData();
+		}
+		for(Animal animal : prey) {
 			animal.executeAction();
 		}
-		for(Animal animal : animals) {
+		for(Animal animal : pred) {
+			animal.executeAction();
+		}
+		for(Animal animal : prey) {
 			animal.update(delta);
 			//animal.update(1.0f);
 		}
-		if(time % 100 == 0) {
-			//System.out.println("Step: " + step);
+		for(Animal animal : pred) {
+			animal.update(delta);
+			//animal.update(1.0f);
 		}
 		time += delta;
 		if(time >= Config.TIME_PER_GENERATION) {
@@ -75,8 +88,9 @@ public class Environment {
 		
 			
 			//System.out.println(Arrays.toString(animals[0].getGenome()));
-			DP.plot(animals, generation);
-			ga.compute(animals);
+			DP.plot(prey, generation);
+			gaPrey.compute(prey);
+			gaPred.compute(pred);
 			time = 0;
 			
 			
@@ -88,22 +102,39 @@ public class Environment {
 		
 	}
 	
-	public Animal[] getAnimals() {
-		return animals;
+	public Animal[] getPrey() {
+		return prey;
 	}
 	
-	public Food[] getFood() {
+	public Animal[] getPred() {
+		return pred;
+	}
+	
+	public Plant[] getPlant() {
 		return food;
 	}
 	
-	public Food getNearestFood(Vector2 position) {
+	public Plant getNearestPlant(Vector2 position) {
 		float distance = Float.MAX_VALUE;
-		Food result = null;
-		for(Food f : food) {
+		Plant result = null;
+		for(Plant f : food) {
 			float d = position.dst2(f.position);
 			if(d < distance) {
 				distance = d;
 				result = f;
+			}
+		}
+		return result;
+	}
+	
+	public Animal getNearestAnimal(Vector2 position) {
+		float distance = Float.MAX_VALUE;
+		Animal result = null;
+		for(Animal a: prey) {
+			float d = position.dst2(a.getPosition());
+			if(d < distance) {
+				distance = d;
+				result = a;
 			}
 		}
 		return result;

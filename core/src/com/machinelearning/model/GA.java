@@ -56,6 +56,17 @@ public class GA {
 	  }
   	  
   	  public void compute(Animal[] pop){
+  		  int numCrossovers;
+  		  int numElitism;
+  		  int numIndividuals = pop.length;
+  		if(pop[0].getFood()[0] instanceof Plant) {
+			  numCrossovers = Config.NUM_CROSSOVER_CHILDREN_PREY;
+			  numElitism = Config.NUM_ELITISM_PREY;
+		  }
+  		else {
+			  numCrossovers = Config.NUM_CROSSOVER_CHILDREN_PRED;
+			  numElitism = Config.NUM_ELITISM_PRED;
+		  }
   		  
   		  if(highestFitness != null) {
   			  highestFitness.resetColor();
@@ -69,12 +80,12 @@ public class GA {
   		  
   		  ArrayList<Animal> newPop = new ArrayList<Animal>();
   		  
-  		  for(int i=0; i<Config.NUM_ELITISM; i++) {
+  		  for(int i=0; i<numElitism; i++) {
   			  newPop.add(pop[i]);
   			  newPop.get(i).setFitness(0);
   		  }
   		  
-  		  for(int i=0; i<Config.NUM_CROSSOVER_CHILDREN / crossover.numChildren(); i++) {
+  		  for(int i=0; i<numCrossovers / crossover.numChildren(); i++) {
   			  Animal[] animals = crossover.cross(selection.select(pop, crossover.numParents()));
   			  for(Animal a : animals) {
   				  newPop.add(a);
@@ -87,7 +98,7 @@ public class GA {
   			  newPop.add(a.copy());
   		  }
   		  
-  		  for(Animal a : newPop.subList(Config.NUM_ELITISM, Config.NUM_INDIVIDUALS-1)) {
+  		  for(Animal a : newPop.subList(numElitism, numIndividuals-1)) {
   			  mutation.mutate(a);
   		  }
   		  

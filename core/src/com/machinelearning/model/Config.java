@@ -11,22 +11,31 @@ import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
-import com.machinelearning.model.sensor.FoodDirectionSensor;
+import com.machinelearning.model.sensor.PlantDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM = 10;
+	public final static int NUM_ELITISM_PREY = 2;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN = 45;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 10;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS = 60;
+	public static final int NUM_INDIVIDUALS_PREY = 20;
+	
+	// Number of individuals to survive per generation
+	public final static int NUM_ELITISM_PRED = 2;
+		
+	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 5;
+	
+	// Number of individuals in the population
+	public static final int NUM_INDIVIDUALS_PRED = 8;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_FOOD = 30;
+	public static final int NUM_PLANT = 10;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
@@ -47,7 +56,7 @@ public class Config {
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();
 	
-	public static final float MUTATION_RATE = 0.0f / NUM_INDIVIDUALS;
+	public static final float MUTATION_RATE = 0.0f / NUM_INDIVIDUALS_PREY;
 	public static final double MUTATION_RANGE = 0.3f;
 	/*----------------------------------------------------------------*/
 	
@@ -76,8 +85,8 @@ public class Config {
 	public final static Sensor[] sensors = {
 			new DirectionSensor('x'),		// Sense the animals direction	x
 			new DirectionSensor('y'),		// Sense the animals direction	y
-			new FoodDirectionSensor('x'),	// Sense closest foods direction	x
-			new FoodDirectionSensor('y')	// Sense closest foods direction	y
+			new PlantDirectionSensor('x'),	// Sense closest foods direction	x
+			new PlantDirectionSensor('y')	// Sense closest foods direction	y
 	};
 	
 	

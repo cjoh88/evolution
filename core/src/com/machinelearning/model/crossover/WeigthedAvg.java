@@ -50,7 +50,7 @@ public class WeigthedAvg implements Crossover2 {
 		System.out.print("Hej");
 		}
 		
-		Animal[] child = {new Animal(input[0].getEnvironment(), input[0].getSensors(), input[0].getActions())};
+		Animal[] child = {new Animal(input[0].getEnvironment(), input[0].getSensors(), input[0].getActions(), input[0].getFood())};
 		child[0].setGenome(weigthsChild);
 		return child;
 		

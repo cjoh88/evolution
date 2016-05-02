@@ -6,7 +6,7 @@ import com.machinelearning.model.Config;
 
 public class RankSelection implements Selection2 {
 	
-	private static final int totalRank = sum(Config.NUM_INDIVIDUALS);
+	private static final int totalRank = sum(Config.NUM_INDIVIDUALS_PREY);
 			
 	private static int sum(int num) {
 		int sum = 0;
@@ -43,7 +43,7 @@ public class RankSelection implements Selection2 {
 		for(int a=1; a<=input.length; a++) {
 			sum += a;
 			if(sum > x) {
-				b = Config.NUM_INDIVIDUALS - a;
+				b = Config.NUM_INDIVIDUALS_PREY - a;
 				break;
 			}
 		}

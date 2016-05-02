@@ -4,16 +4,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.machinelearning.model.Animal;
-import com.machinelearning.model.Food;
+import com.machinelearning.model.Plant;
 
-public class FoodRenderer {
+public class PlantRenderer {
 	
-	private Food[] food;
+	private Plant[] food;
 	private OrthographicCamera camera;
 	
 	private ShapeRenderer shapeRenderer;
 	
-	public FoodRenderer(Food[] food, OrthographicCamera camera) {
+	public PlantRenderer(Plant[] food, OrthographicCamera camera) {
 		this.food = food;
 		this.camera = camera;
 		this.shapeRenderer = new ShapeRenderer();
@@ -23,7 +23,7 @@ public class FoodRenderer {
 		//camera.update();
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
-			for(Food f : food) {
+			for(Plant f : food) {
 				shapeRenderer.setColor(f.color());
 				shapeRenderer.circle(f.x(), f.y(), 0.2f, 10);
 			}
