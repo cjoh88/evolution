@@ -25,20 +25,22 @@ public class ShannonWienerDiversity implements Diversity {
 			for (int d = 0; d<population.length; d++){
 				double [] de = population[d].getGenome();
 				genes[d] = de[i];
-				//System.out.println("Genes " + genes[d]);
+				
 				sum += genes[d];
 				
 			}
 			diversity += calculateSW(sum, genes);
-			eveness += diversity / Math.log(population.length);
+			eveness += diversity / Math.log(population.length*genotypeLength);
 			
-		}
 		
+		}
 		//Normalize diversity?
-		diversity = diversity / genotypeLength;
+		diversity = diversity / (genotypeLength*population.length);
 		
 		//Normalize Eveness (REQUIRED for it to be [0,1])
-		eveness = eveness / genotypeLength;
+		//eveness = eveness / genotypeLength;
+		
+		System.out.println("Eveness " + eveness);
 		
 		div_eve[0] = diversity;
 		div_eve[1] = eveness;

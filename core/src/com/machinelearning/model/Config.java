@@ -4,35 +4,35 @@ import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.SpeedAction;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
-import com.machinelearning.model.crossover.WeigthedAvg;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
-import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
+import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
+import com.machinelearning.model.crossover.WeigthedAvg;
 
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PREY = 2;
+	public final static int NUM_ELITISM_PREY = 5;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 10;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 15;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 20;
+	public static final int NUM_INDIVIDUALS_PREY = 30;
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 2;
+	public final static int NUM_ELITISM_PRED = 1;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 5;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 2;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 8;
+	public static final int NUM_INDIVIDUALS_PRED = 3;
 	
 	// Number of food pieces in the environment
 	public static final int NUM_PLANT = 10;
@@ -48,7 +48,7 @@ public class Config {
 		
 		
 	// Selection function for crossover
-	public static final Selection2 SELECTION = new BestBreedAll();
+	public static final Selection2 SELECTION = new RankSelection();
 	
 	// Crossover function
 	public static final Crossover2 CROSSOVER = new WeigthedAvg();
