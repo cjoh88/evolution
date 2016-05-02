@@ -13,11 +13,14 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import com.machinelearning.model.Animal;
+import com.machinelearning.model.crossover.Crossover2;
+import com.machinelearning.model.crossover.WeigthedAvg;
 
 public class DiversityPlot {
 	
 	  static XYSeries values = new XYSeries( "Values" );
-	  ShannonWienerDiversity SWD = new ShannonWienerDiversity();
+	  public static final Diversity DIVERSITY = new HammingDistanceDiversity();
+	  
     public DiversityPlot(){
         
        
@@ -50,7 +53,7 @@ public class DiversityPlot {
 
     public void plot(Animal[] animals, int generation) {
         	
-        	   double[] div_eve = SWD.calculateDiversity(animals);
+        	   double[] div_eve = DIVERSITY.calculateDiversity(animals);
         	   System.out.println("Diversity: " + div_eve[0]);
         	   values.addOrUpdate(generation, div_eve[0]);
     }
