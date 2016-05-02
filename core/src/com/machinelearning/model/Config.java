@@ -9,6 +9,7 @@ import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.BestBreedAll;
 import com.machinelearning.model.selection.RandomSelection;
+import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.FoodDirectionSensor;
@@ -20,7 +21,7 @@ public class Config {
 	public final static int NUM_ELITISM = 10;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN = 45;
+	public final static int NUM_CROSSOVER_CHILDREN = 50;
 	
 	// Number of individuals in the population
 	public static final int NUM_INDIVIDUALS = 60;
@@ -39,7 +40,7 @@ public class Config {
 		
 		
 	// Selection function for crossover
-	public static final Selection2 SELECTION = new BestBreedAll();
+	public static final Selection2 SELECTION = new RankSelection();
 	
 	// Crossover function
 	public static final Crossover2 CROSSOVER = new WeigthedAvg();

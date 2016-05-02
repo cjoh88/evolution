@@ -52,7 +52,7 @@ public class DiversityPlot {
         	
         	   double[] div_eve = SWD.calculateDiversity(animals);
         	   System.out.println("Diversity: " + div_eve[0]);
-        	   values.addOrUpdate(generation, (int) div_eve[0]);
+        	   values.addOrUpdate(generation, div_eve[0]);
     }
        
 
