@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -48,7 +49,8 @@ public class statistics {
 			String chartTitle = "Fitness/Generation-chart";
 			String xAxisLabel = "Average generation fitness";
 			String yAxisLabel = "Best individual fitness";
-			JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, xAxisLabel, yAxisLabel, dataset);
+			JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, xAxisLabel, yAxisLabel, dataset, PlotOrientation.VERTICAL, false, false, false);
+					//(chartTitle, xAxisLabel, yAxisLabel, dataset)
 			return new ChartPanel(chart);
 		}
 

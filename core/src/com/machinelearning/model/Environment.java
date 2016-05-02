@@ -151,6 +151,19 @@ public class Environment {
 		return result;
 	}
 	
+	public Animal getNearestPredator(Vector2 position) {
+		float distance = Float.MAX_VALUE;
+		Animal result = null;
+		for(Animal a: pred) {
+			float d = position.dst2(a.getPosition());
+			if(d < distance) {
+				distance = d;
+				result = a;
+			}
+		}
+		return result;
+	}
+	
 	public Sensor[] getSensors() {
 		return Config.sensors;
 	}
