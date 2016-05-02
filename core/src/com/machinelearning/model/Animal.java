@@ -174,6 +174,7 @@ public class Animal implements Food {
 		else {
 			this.color = PRED_COLOR;
 		}
+
 	}
 	
 	public void setAsHighestFitness() {

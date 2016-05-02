@@ -49,6 +49,12 @@ public class Environment {
 		for(Sensor s : Config.sensors) {
 			s.setEnvironment(this);
 		}
+		
+		// Create Food
+		for(int i=0; i<food.length; i++) {
+			food[i] = new Plant();
+		}
+		
 		// Create Animals
 		for(int i=0; i<Config.NUM_INDIVIDUALS_PREY; i++) {
 			prey[i] = new Animal(this, Config.sensors, Config.actions, food);
@@ -56,10 +62,7 @@ public class Environment {
 		for(int i=0; i<Config.NUM_INDIVIDUALS_PRED; i++) {
 			pred[i] = new Animal(this, Config.sensors, Config.actions, prey);
 		}
-		// Create Food
-		for(int i=0; i<food.length; i++) {
-			food[i] = new Plant();
-		}
+
 		gaPrey = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
 		gaPred = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
 	}
