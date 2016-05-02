@@ -12,6 +12,8 @@ import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
+import com.machinelearning.model.sensor.PredatorDirectionSensor;
+import com.machinelearning.model.sensor.PreyDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
 
 public class Config {
@@ -20,19 +22,19 @@ public class Config {
 	public final static int NUM_ELITISM_PREY = 5;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 15;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 25;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 30;
+	public static final int NUM_INDIVIDUALS_PREY = 40;
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 1;
+	public final static int NUM_ELITISM_PRED = 2;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 2;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 6;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 3;
+	public static final int NUM_INDIVIDUALS_PRED = 10;
 	
 	// Number of food pieces in the environment
 	public static final int NUM_PLANT = 10;
@@ -86,7 +88,11 @@ public class Config {
 			new DirectionSensor('x'),		// Sense the animals direction	x
 			new DirectionSensor('y'),		// Sense the animals direction	y
 			new PlantDirectionSensor('x'),	// Sense closest foods direction	x
-			new PlantDirectionSensor('y')	// Sense closest foods direction	y
+			new PlantDirectionSensor('y'),	// Sense closest foods direction	y
+			new PreyDirectionSensor('x'),
+			new PreyDirectionSensor('y'),
+			new PredatorDirectionSensor('x'),
+			new PredatorDirectionSensor('y')
 	};
 	
 	
