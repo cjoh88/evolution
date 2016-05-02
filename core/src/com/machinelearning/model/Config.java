@@ -47,9 +47,12 @@ public class Config {
 		
 	// Number of time in seconds per generation
 	public static final double TIME_PER_GENERATION = 20.0;
+	
+	// Plot fitness information in a graph
+	public static final boolean PLOT_STATS = true;
 		
 		
-	// Selection function for crossover
+	// Selection function for crossover (performance penalty)
 	public static final Selection2 SELECTION = new RankSelection();
 	
 	// Crossover function

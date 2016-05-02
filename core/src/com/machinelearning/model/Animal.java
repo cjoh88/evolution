@@ -244,7 +244,7 @@ public class Animal implements Food {
 
 	@Override
 	public void eaten() {
-		fitness -= 3;
+		fitness -= 1;
 		position.x = Utility.random.nextFloat() * Config.WIDTH;
 		position.y = Utility.random.nextFloat() * Config.HEIGHT;
 	}
