@@ -4,6 +4,7 @@ import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.SpeedAction;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
+import com.machinelearning.model.crossover.OnePoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
@@ -12,7 +13,6 @@ import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
 import com.machinelearning.model.sensor.Sensor;
-import com.machinelearning.model.crossover.WeigthedAvg;
 
 public class Config {
 	
@@ -51,7 +51,7 @@ public class Config {
 	public static final Selection2 SELECTION = new RankSelection();
 	
 	// Crossover function
-	public static final Crossover2 CROSSOVER = new WeigthedAvg();
+	public static final Crossover2 CROSSOVER = new OnePoint();
 	
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();

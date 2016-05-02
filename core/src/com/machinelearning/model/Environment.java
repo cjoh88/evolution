@@ -5,6 +5,7 @@ import com.machinelearning.Utility;
 import com.machinelearning.diversity.DiversityPlot;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
+import com.machinelearning.statistics.statistics;
 
 public class Environment {
 	
@@ -22,7 +23,9 @@ public class Environment {
 	private int generation = 1;
 	private double time = 0;
 	private DiversityPlot DP = new DiversityPlot();
-	
+
+	private statistics statPlot = new statistics();
+
 	
 	/* Add sensors and actions to respective array
 	 * 
@@ -86,6 +89,14 @@ public class Environment {
 		if(time >= Config.TIME_PER_GENERATION) {
 			//TODO Create new generation
 		
+			
+			int tmpFit=0;
+			for (int i = 0; i < prey.length; i++) 
+				tmpFit += prey[i].fitness();
+			tmpFit = tmpFit/prey.length;
+			
+			statPlot.addFitness(tmpFit, prey[0].fitness(), generation);
+			
 			
 			//System.out.println(Arrays.toString(animals[0].getGenome()));
 			DP.plot(prey, generation);

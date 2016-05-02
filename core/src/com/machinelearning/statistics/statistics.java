@@ -1,0 +1,56 @@
+package com.machinelearning.statistics;
+
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+
+public class statistics {
+
+	XYSeriesCollection dataset = new XYSeriesCollection();
+	XYSeries series1 = new XYSeries("Average generation fitness");
+	XYSeries series2 = new XYSeries("Best individual fitness");
+
+	public statistics() {
+		new XYLineChartExample(dataset).setVisible(true);
+		dataset.addSeries(series1);
+		dataset.addSeries(series2);
+	}
+
+	public void addFitness(double averageFit, double bestFit, int generation){
+		series1.add(generation, averageFit);
+		series2.add(generation, bestFit);
+		
+	}
+	
+	public class XYLineChartExample extends JFrame {
+
+		public XYLineChartExample(XYDataset dataset) {
+			super("XY Line Chart Example with JFreechart");
+
+			JPanel chartPanel = createChartPanel(dataset);
+			add(chartPanel, BorderLayout.CENTER);
+
+			setSize(640, 480);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setLocationRelativeTo(null);
+		}
+
+		private JPanel createChartPanel(XYDataset dataset) {
+			String chartTitle = "Fitness/Generation-chart";
+			String xAxisLabel = "Average generation fitness";
+			String yAxisLabel = "Best individual fitness";
+			JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, xAxisLabel, yAxisLabel, dataset);
+			return new ChartPanel(chart);
+		}
+
+	}
+}
