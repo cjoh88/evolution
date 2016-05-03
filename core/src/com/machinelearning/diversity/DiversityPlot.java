@@ -18,7 +18,8 @@ import com.machinelearning.model.crossover.WeigthedAvg;
 
 public class DiversityPlot {
 
-	static XYSeries values = new XYSeries("Values");
+	static XYSeries values = new XYSeries("Prey");
+	static XYSeries values2 = new XYSeries("Predator");
 	public static final Diversity DIVERSITY = new HammingDistanceDiversity();
 
 	public DiversityPlot() {
@@ -26,6 +27,7 @@ public class DiversityPlot {
 		if (Config.PLOT_STATS) {
 
 			XYSeriesCollection dataset = new XYSeriesCollection(values);
+			dataset.addSeries(values2);
 			JFreeChart chart = ChartFactory.createXYLineChart("", "Generation", "Diversity", dataset,
 					PlotOrientation.VERTICAL, true, true, false);
 
@@ -45,11 +47,15 @@ public class DiversityPlot {
 		}
 	}
 
-	public void plot(Animal[] animals, int generation) {
+	public void plot(Animal[] animals,Animal[] predator, int generation) {
 
 		double[] div_eve = DIVERSITY.calculateDiversity(animals);
+		double[] div = DIVERSITY.calculateDiversity(predator);
 		System.out.println("Diversity: " + div_eve[0]);
 		values.addOrUpdate(generation, div_eve[0]);
+		values2.addOrUpdate(generation, div[0]);
+		
+		
 	}
 
 }
