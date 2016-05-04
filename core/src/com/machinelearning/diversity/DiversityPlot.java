@@ -1,5 +1,7 @@
 package com.machinelearning.diversity;
 
+import java.util.Arrays;
+
 import javax.swing.JFrame;
 
 import org.jfree.chart.ChartFactory;
@@ -13,14 +15,12 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import com.machinelearning.model.Animal;
 import com.machinelearning.model.Config;
-import com.machinelearning.model.crossover.Crossover2;
-import com.machinelearning.model.crossover.WeigthedAvg;
 
 public class DiversityPlot {
 
 	static XYSeries values = new XYSeries("Prey");
 	static XYSeries values2 = new XYSeries("Predator");
-	public static final Diversity DIVERSITY = new HammingDistanceDiversity();
+	public static final Diversity DIVERSITY = new PhenotypeDiversity();
 
 	public DiversityPlot() {
 
@@ -48,10 +48,10 @@ public class DiversityPlot {
 	}
 
 	public void plot(Animal[] animals,Animal[] predator, int generation) {
-
+       
 		double[] div_eve = DIVERSITY.calculateDiversity(animals);
 		double[] div = DIVERSITY.calculateDiversity(predator);
-		System.out.println("Diversity: " + div_eve[0]);
+		//System.out.println("Diversity: " + div_eve[0]);
 		values.addOrUpdate(generation, div_eve[0]);
 		values2.addOrUpdate(generation, div[0]);
 		

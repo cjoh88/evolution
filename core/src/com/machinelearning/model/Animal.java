@@ -241,6 +241,10 @@ public class Animal implements Food {
 	public Food[] getFood() {
 		return food;
 	}
+	
+	public MultiLayerPerceptron getMLP(){
+		return ann;
+	}
 
 	@Override
 	public void eaten() {
