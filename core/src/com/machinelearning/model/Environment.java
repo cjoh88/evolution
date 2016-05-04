@@ -26,7 +26,7 @@ public class Environment {
 	private int generation = 1;
 	private double time = 0;
 	private DiversityPlot DP = new DiversityPlot();
-	private DiversityPlot EP = new DiversityPlot();
+
 
 	private statistics statPlotPrey = new statistics("PREY: Fitness/Generation");
 	private statistics statPlotPredator = new statistics("PREDATOR: Fitness/Generation");
