@@ -105,6 +105,7 @@ public class GA {
 		// TODO pop and newPop must be same length
 		for (int i = 0; i < pop.length; i++) {
 			pop[i] = newPop.get(i);
+			pop[i].alive = true;
 		}
 
 	}

@@ -10,6 +10,7 @@ import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
+import com.machinelearning.model.sensor.AnimalDistanceSensor;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
 import com.machinelearning.model.sensor.PredatorDirectionSensor;
@@ -22,22 +23,22 @@ public class Config {
 	public final static int NUM_ELITISM_PREY = 4;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 21;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 14;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 25;
+	public static final int NUM_INDIVIDUALS_PREY = 20;
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 4;
+	public final static int NUM_ELITISM_PRED = 3;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 11;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 5;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 15;
+	public static final int NUM_INDIVIDUALS_PRED = 10;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_PLANT = 15;
+	public static final int NUM_PLANT = 20;
 	
 	// Width of the environment
 	public static final int WIDTH = 80;
@@ -49,7 +50,10 @@ public class Config {
 	public static final double TIME_PER_GENERATION = 20.0;
 	
 	// Penalty for being eaten
-	public static final double EATEN_PENALTY = 1.0;
+	public static final double EATEN_PENALTY = 500;
+	
+	// Reward for eating
+	public static final double FOOD_REWARD = 200;
 	
 	// Plot fitness information in a graph
 	public static final boolean PLOT_STATS = true;
@@ -98,7 +102,9 @@ public class Config {
 			new PreyDirectionSensor('x'),
 			new PreyDirectionSensor('y'),
 			new PredatorDirectionSensor('x'),
-			new PredatorDirectionSensor('y')
+			new PredatorDirectionSensor('y'),
+			new AnimalDistanceSensor('p'),
+			new AnimalDistanceSensor('d')
 	};
 	
 	

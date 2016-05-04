@@ -26,11 +26,13 @@ public class AnimalRenderer {
 		shapeRenderer.begin(ShapeType.Filled);
 		//shapeRenderer.setColor(1,1,0,1);
 			for(Animal animal : animals) {
-				//shapeRenderer.rect(animal.x(), animal.y() , 1, 1);
-				shapeRenderer.setColor(animal.color());
-				//shapeRenderer.box(x, y, z, width, height, depth); 
-				shapeRenderer.rect(animal.x(), animal.y(), 0.5f, 0.5f);
-				//shapeRenderer.circle(animal.x(), animal.y(), 0.5f, 10);
+				if(animal.alive){
+					//shapeRenderer.rect(animal.x(), animal.y() , 1, 1);
+					shapeRenderer.setColor(animal.color());
+					//shapeRenderer.box(x, y, z, width, height, depth); 
+					shapeRenderer.rect(animal.x(), animal.y(), 0.5f, 0.5f);
+					//shapeRenderer.circle(animal.x(), animal.y(), 0.5f, 10);
+				}
 			}
 		shapeRenderer.end();
 	}

@@ -32,7 +32,7 @@ public class Animal implements Food {
 	//private NeuralNetwork ann;
 	private MultiLayerPerceptron ann;
 	
-	private int fitness;
+	public int fitness;
 	private Environment environment;
 	
 	private Food[] food;
@@ -40,6 +40,8 @@ public class Animal implements Food {
 	public Vector2 position;
 	public Vector2 velocity;
 	//public Vector2 velocity;
+	
+	public boolean alive=true;
 	
 	private static final float MAX_SPEED = 15.0f;
 	private float speed;
@@ -66,7 +68,7 @@ public class Animal implements Food {
 		resetColor();
 		//this.ann = new NeuralNetwork(sensors.length, sensors.length * 2, actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length*2, actions.length);
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length/2, actions.length);
 
 
 		this.fitness = 0;		
@@ -149,7 +151,7 @@ public class Animal implements Food {
 			if(position.dst2(f.getPosition()) < 0.5f) {
 				//TODO include ID in log
 				//Utility.log("Animal " + id + " found food at " + f.x() + ", " + f.y());
-				fitness += 1;
+				fitness += Config.FOOD_REWARD;
 				f.eaten();
 			}
 		}
@@ -248,9 +250,13 @@ public class Animal implements Food {
 
 	@Override
 	public void eaten() {
+		alive=false;
 		fitness -= Config.EATEN_PENALTY;
 		position.x = Utility.random.nextFloat() * Config.WIDTH;
 		position.y = Utility.random.nextFloat() * Config.HEIGHT;
+		
+		position.x = 9999;
+		position.y = 9999;
 	}
 
 	@Override
