@@ -102,8 +102,12 @@ public class Animal implements Food {
 		position.add(velocity);
 		// velocity.x = velocity.x;
 		// velocity.y = velocity.y;
-		// wrapAround();
-		checkBounds();
+		if(Config.WALL_PORTAL){
+			wrapAround();
+		}else{
+			checkBounds();
+		}
+		
 		hasFoundFood();
 	}
 
