@@ -143,6 +143,16 @@ public class Environment {
 
 	}
 
+	private boolean isAllPreyDead(Animal[] prey){
+		for(int i = 0; i<prey.length; i++){
+			if(prey[i].alive){
+				return false;
+			}
+		}
+		return true;
+		
+	}
+
 	private static Comparator<Animal> fitnessComparator = new Comparator<Animal>() {
 		@Override
 		public int compare(Animal a1, Animal a2) {

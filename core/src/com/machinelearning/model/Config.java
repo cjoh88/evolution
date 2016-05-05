@@ -23,10 +23,10 @@ public class Config {
 	public final static int NUM_ELITISM_PREY = 4;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 17;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 30;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 22;
+	public static final int NUM_INDIVIDUALS_PREY = 35;
 	
 	// Number of individuals to survive per generation
 	public final static int NUM_ELITISM_PRED = 5;
@@ -41,10 +41,10 @@ public class Config {
 	public static final int NUM_PLANT = 22;
 	
 	// Width of the environment
-	public static final int WIDTH = 100;
+	public static final int WIDTH = 120;
 		
 	// Height of the environment
-	public static final int HEIGHT = 70;
+	public static final int HEIGHT = 90;
 		
 	// Number of time in seconds per generation
 	public static final double TIME_PER_GENERATION = 20.0;
