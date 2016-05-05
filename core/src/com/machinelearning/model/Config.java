@@ -20,31 +20,31 @@ import com.machinelearning.model.sensor.Sensor;
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PREY = 4;
+	public final static int NUM_ELITISM_PREY = 10;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 45;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 85;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 50;
+	public static final int NUM_INDIVIDUALS_PREY = 100;
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 1;
+	public final static int NUM_ELITISM_PRED = 5;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 2;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 40;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 3;
+	public static final int NUM_INDIVIDUALS_PRED = 45;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_PLANT = 60;
+	public static final int NUM_PLANT = 40;
 	
 	// Width of the environment
-	public static final int WIDTH = 80;
+	public static final int WIDTH = 250;
 		
 	// Height of the environment
-	public static final int HEIGHT = 45;
+	public static final int HEIGHT = 180;
 		
 	// Number of time in seconds per generation
 	public static final double TIME_PER_GENERATION = 20.0;
