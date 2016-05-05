@@ -53,7 +53,7 @@ public class StatChart extends JFrame {
 		String chartTitle = namn;// "Fitness/Generation-chart";
 		String xAxisLabel = xStr;// "Average generation fitness";
 		String yAxisLabel = yStr;// "Best individual fitness";
-		JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset,
+		JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, xAxisLabel, yAxisLabel, dataset,
 				PlotOrientation.VERTICAL, true, false, false);
 		return new ChartPanel(chart);
 	}

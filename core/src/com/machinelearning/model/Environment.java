@@ -116,24 +116,28 @@ public class Environment {
 				int tmpFit = 0;
 				for (int i = 0; i < prey.length; i++)
 					tmpFit += prey[i].fitness();
-				tmpFit = tmpFit / prey.length;
+				tmpFit = tmpFit / (prey.length+1);
 
-				//prey. addFitness(tmpFit, prey[0].fitness(), generation);
-				preyPlot.addFitness(tmpFit, prey[0].fitness(), generation);
+				if(prey.length>0)
+					preyPlot.addFitness(tmpFit, prey[0].fitness(), generation);
 				
 				tmpFit = 0;
 				for (int i = 0; i < pred.length; i++)
 					tmpFit += pred[i].fitness();
-				tmpFit = tmpFit / pred.length;
-				//statPlotPredator.addFitness(tmpFit, pred[0].fitness(), generation);
-				predPlot.addFitness(tmpFit, prey[0].fitness(), generation);
+				tmpFit = tmpFit / (pred.length+1);
+
+				if(pred.length>0)
+					predPlot.addFitness(tmpFit, pred[0].fitness(), generation);
 				
 				//DP.plot(prey, pred, generation);
 				diversityPlot.addFitness(prey, pred, generation);
 			}
 
-			gaPrey.compute(prey);
-			gaPred.compute(pred);
+			if(prey.length>0)
+				gaPrey.compute(prey);
+			
+			if(pred.length>0)
+				gaPred.compute(pred);
 			time = 0;
 
 			generation++;
@@ -201,6 +205,7 @@ public class Environment {
 	public Animal getNearestPredator(Vector2 position) {
 		float distance = Float.MAX_VALUE;
 		Animal result = null;
+		
 		for (Animal a : pred) {
 			float d = position.dst2(a.getPosition());
 			if (d < distance) {

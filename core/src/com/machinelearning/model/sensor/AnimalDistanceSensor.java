@@ -5,9 +5,9 @@ import com.machinelearning.model.Animal;
 import com.machinelearning.model.Config;
 
 public class AnimalDistanceSensor extends Sensor {
-	
+
 	private char c;
-	
+
 	public AnimalDistanceSensor(char c) {
 		this.c = c;
 	}
@@ -15,15 +15,19 @@ public class AnimalDistanceSensor extends Sensor {
 	@Override
 	public float readSensorValue(Animal animal) {
 		Animal a;
-		if(c == 'p') {
+		if (c == 'p') {
 			a = environment.getNearestPredator(animal.getPosition());
-		}
-		else {
+		} else {
 			a = environment.getNearestAnimal(animal.getPosition());
 		}
-		Vector2 target = a.position.cpy().sub(animal.position);
+
+		Vector2 target = new Vector2();
+
+		if (a != null)
+			target = a.position.cpy().sub(animal.position);
+
 		float f = target.len() / Config.WIDTH;
-		if(f>1.0f) {
+		if (f > 1.0f) {
 			f = 1.0f;
 		}
 		return f;

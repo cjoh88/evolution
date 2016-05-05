@@ -14,7 +14,15 @@ public class PredatorDirectionSensor extends Sensor {
 	@Override
 	public float readSensorValue(Animal animal) {
 		Animal food = environment.getNearestPredator(animal.position);
-		Vector2 target = food.position.cpy().sub(animal.position);
+
+		Vector2 target;
+		
+		if(food!=null){
+			target = food.position.cpy().sub(animal.position);
+		}else{
+			target = new Vector2();
+		}
+		
 		target.nor();
 		if(c == 'y') {
 			return target.y;
