@@ -35,7 +35,7 @@ public class Config {
 	public final static int NUM_CROSSOVER_CHILDREN_PRED = 16;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 0;
+	public static final int NUM_INDIVIDUALS_PRED = 50;
 	
 	// Number of food pieces in the environment
 	public static final int NUM_PLANT = 35;
@@ -52,12 +52,17 @@ public class Config {
 	// Penalty for being eaten
 	public static final double EATEN_PENALTY = 500;
 	
+	// Controls re-spawn/permanent death on being eaten
+	public static final boolean KILL_ON_EATEN = false;
+	
 	// Reward for eating
 	public static final double FOOD_REWARD = 300;
 	
 	// Plot fitness information in a graph
 	public static final boolean PLOT_STATS = true;
-		
+	
+	// Oparque walls - or portal behavior
+	public static final boolean WALL_PORTAL = false;
 		
 	// Selection function for crossover (performance penalty)
 	public static final Selection2 SELECTION = new TournamentSelection();
