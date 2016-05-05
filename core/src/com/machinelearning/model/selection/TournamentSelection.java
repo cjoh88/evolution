@@ -43,13 +43,13 @@ public class TournamentSelection implements Selection2 {
 		for(int i =0; i<tournamentPoolSize; i++){
 			Animal newAnimal =  input[(int)(Math.random() * input.length)];
 			
-			if(alreadyPicked(tournamentPool,newAnimal)){ //Could add a count of how many times to do this to not force a possible infinite loop
+			/*if(alreadyPicked(tournamentPool,newAnimal)){ //Could add a count of how many times to do this to not force a possible infinite loop
 				i--;
 			}
 			
-			else{
+			else{*/
 				tournamentPool[i] = newAnimal;
-			}
+			//}
 		}
 		
 		Arrays.sort(tournamentPool, fitnessComparator);
