@@ -30,18 +30,30 @@ public class StatChart extends JFrame {
 
 	public Statistics statAdd(String namn, String xStr, String yStr) {
 		Statistics stats = new Statistics();
-		JPanel chartPanel1 = createChartPanel(stats.dataset, namn, xStr, yStr);
-		add(chartPanel1);
+		JPanel chartPanel = createChartPanel(stats.dataset, namn, xStr, yStr);
+		add(chartPanel);
 		setVisible(true);
 
 		return stats;
+	}
+
+	public DiversityData addPlot(String namn, String xStr, String yStr) {
+
+		DiversityData stats = new DiversityData();
+		// stats.addFitness(animals, predator, generation);
+		JPanel chartPanel = createChartPanel(stats.dataset, namn, xStr, yStr);
+		add(chartPanel);
+		setVisible(true);
+
+		return stats;
+
 	}
 
 	private JPanel createChartPanel(XYDataset dataset, String namn, String xStr, String yStr) {
 		String chartTitle = namn;// "Fitness/Generation-chart";
 		String xAxisLabel = xStr;// "Average generation fitness";
 		String yAxisLabel = yStr;// "Best individual fitness";
-		JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, xAxisLabel, yAxisLabel, dataset,
+		JFreeChart chart = ChartFactory.createXYLineChart(chartTitle, xAxisLabel, yAxisLabel, dataset,
 				PlotOrientation.VERTICAL, true, false, false);
 		return new ChartPanel(chart);
 	}

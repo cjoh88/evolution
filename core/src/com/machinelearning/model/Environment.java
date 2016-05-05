@@ -8,6 +8,7 @@ import com.machinelearning.Utility;
 import com.machinelearning.diversity.DiversityPlot;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
+import com.machinelearning.statistics.DiversityData;
 import com.machinelearning.statistics.StatChart;
 import com.machinelearning.statistics.Statistics;
 
@@ -26,10 +27,12 @@ public class Environment {
 	// public static final int STEPS_PER_GENERATION = 6000;
 	private int generation = 1;
 	private double time = 0;
-	private DiversityPlot DP = new DiversityPlot();
+//	private DiversityPlot DP = new DiversityPlot();
 
 	private StatChart statPlot = new StatChart();
 	Statistics preyPlot, predPlot;
+	DiversityData diversityPlot;
+	
 //	private statistics statPlotPrey = new statistics("PREY: Fitness/Generation");
 //	private statistics statPlotPredator = new statistics("PREDATOR: Fitness/Generation");
 
@@ -67,8 +70,9 @@ public class Environment {
 		}
 
 		if(Config.PLOT_STATS){
-			preyPlot = statPlot.statAdd("PREY fitness/generation",  "Average generation fitness", "Best individual fitness");
-			predPlot = statPlot.statAdd("Predator fitness/generation",  "Average generation fitness", "Best individual fitness");
+			preyPlot = statPlot.statAdd("PREY fitness/generation",  "Generation", "Fitness");
+			predPlot = statPlot.statAdd("Predator fitness/generation",  "Generation", "Fitness");
+			diversityPlot = statPlot.addPlot("Population diversity", "Generation", "Diversity");
 		}
 
 		gaPrey = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
@@ -124,8 +128,8 @@ public class Environment {
 				//statPlotPredator.addFitness(tmpFit, pred[0].fitness(), generation);
 				predPlot.addFitness(tmpFit, prey[0].fitness(), generation);
 				
-				DP.plot(prey, pred, generation);
-
+				//DP.plot(prey, pred, generation);
+				diversityPlot.addFitness(prey, pred, generation);
 			}
 
 			gaPrey.compute(prey);
