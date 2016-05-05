@@ -62,7 +62,7 @@ public class Config {
 	// Selection function for crossover (performance penalty)
 	public static final Selection2 SELECTION = new TournamentSelection();
 	
-	// Crossover function
+	/// Crossover function
 	public static final Crossover2 CROSSOVER = new OnePoint();
 	
 	// Mutation function
