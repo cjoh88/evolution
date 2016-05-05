@@ -20,31 +20,31 @@ import com.machinelearning.model.sensor.Sensor;
 public class Config {
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PREY = 10;
+	public final static int NUM_ELITISM_PREY = 4;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 85;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 17;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PREY = 100;
+	public static final int NUM_INDIVIDUALS_PREY = 22;
 	
 	// Number of individuals to survive per generation
 	public final static int NUM_ELITISM_PRED = 5;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 40;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 16;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 45;
+	public static final int NUM_INDIVIDUALS_PRED = 22;
 	
 	// Number of food pieces in the environment
-	public static final int NUM_PLANT = 40;
+	public static final int NUM_PLANT = 22;
 	
 	// Width of the environment
-	public static final int WIDTH = 250;
+	public static final int WIDTH = 100;
 		
 	// Height of the environment
-	public static final int HEIGHT = 180;
+	public static final int HEIGHT = 70;
 		
 	// Number of time in seconds per generation
 	public static final double TIME_PER_GENERATION = 20.0;
@@ -53,7 +53,7 @@ public class Config {
 	public static final double EATEN_PENALTY = 500;
 	
 	// Reward for eating
-	public static final double FOOD_REWARD = 200;
+	public static final double FOOD_REWARD = 300;
 	
 	// Plot fitness information in a graph
 	public static final boolean PLOT_STATS = true;

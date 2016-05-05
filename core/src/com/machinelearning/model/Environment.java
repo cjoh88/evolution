@@ -8,7 +8,8 @@ import com.machinelearning.Utility;
 import com.machinelearning.diversity.DiversityPlot;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
-import com.machinelearning.statistics.statistics;
+import com.machinelearning.statistics.StatChart;
+import com.machinelearning.statistics.Statistics;
 
 public class Environment {
 
@@ -27,8 +28,10 @@ public class Environment {
 	private double time = 0;
 	private DiversityPlot DP = new DiversityPlot();
 
-	private statistics statPlotPrey = new statistics("PREY: Fitness/Generation");
-	private statistics statPlotPredator = new statistics("PREDATOR: Fitness/Generation");
+	private StatChart statPlot = new StatChart();
+	Statistics preyPlot, predPlot;
+//	private statistics statPlotPrey = new statistics("PREY: Fitness/Generation");
+//	private statistics statPlotPredator = new statistics("PREDATOR: Fitness/Generation");
 
 	/*
 	 * Add sensors and actions to respective array
@@ -63,6 +66,10 @@ public class Environment {
 			pred[i] = new Animal(this, Config.sensors, Config.actions, prey);
 		}
 
+		if(Config.PLOT_STATS){
+			preyPlot = statPlot.statAdd("PREY fitness/generation",  "Average generation fitness", "Best individual fitness");
+			predPlot = statPlot.statAdd("Predator fitness/generation",  "Average generation fitness", "Best individual fitness");
+		}
 
 		gaPrey = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
 		gaPred = new GA(Config.CROSSOVER, Config.MUTATION, Config.SELECTION, Config.END_SELECTION);
@@ -107,14 +114,16 @@ public class Environment {
 					tmpFit += prey[i].fitness();
 				tmpFit = tmpFit / prey.length;
 
-				statPlotPrey.addFitness(tmpFit, prey[0].fitness(), generation);
-
+				//prey. addFitness(tmpFit, prey[0].fitness(), generation);
+				preyPlot.addFitness(tmpFit, prey[0].fitness(), generation);
+				
 				tmpFit = 0;
 				for (int i = 0; i < pred.length; i++)
 					tmpFit += pred[i].fitness();
 				tmpFit = tmpFit / pred.length;
-				statPlotPredator.addFitness(tmpFit, pred[0].fitness(), generation);
-
+				//statPlotPredator.addFitness(tmpFit, pred[0].fitness(), generation);
+				predPlot.addFitness(tmpFit, prey[0].fitness(), generation);
+				
 				DP.plot(prey, pred, generation);
 
 			}
