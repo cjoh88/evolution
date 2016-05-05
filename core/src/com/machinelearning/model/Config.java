@@ -6,7 +6,7 @@ import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.crossover.OnePoint;
 import com.machinelearning.model.mutation.Mutation;
-import com.machinelearning.model.mutation.UniformMutation;
+import com.machinelearning.model.mutation.NoMutation;
 import com.machinelearning.model.selection.RandomSelection;
 import com.machinelearning.model.selection.Selection2;
 import com.machinelearning.model.selection.TournamentSelection;
@@ -66,7 +66,7 @@ public class Config {
 	public static final Crossover2 CROSSOVER = new OnePoint();
 	
 	// Mutation function
-	public static final Mutation MUTATION = new UniformMutation();
+	public static final Mutation MUTATION = new NoMutation();
 	
 	public static final float MUTATION_RATE = 1f / (NUM_INDIVIDUALS_PREY*10);
 	public static final double MUTATION_RANGE = 0.25f;

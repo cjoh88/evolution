@@ -23,7 +23,7 @@ public class WeigthedAvg implements Crossover2 {
 			double[] WeigthProbPerParent = new double[numberofParents];
 		    
 			for(int i =0; i<numberofParents; i++){  //Calculate amount of impact each parent has
-               WeigthProbPerParent[i] = input[i].fitness()/totalFitness;			
+               WeigthProbPerParent[i] = Math.abs(input[i].fitness()/totalFitness);			
 			}
 			
 			for(int i =0; i<weigthsChild.length; i++){ //Calculate weigths for the child

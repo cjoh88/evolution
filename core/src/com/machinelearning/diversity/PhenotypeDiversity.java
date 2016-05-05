@@ -20,12 +20,15 @@ public class PhenotypeDiversity implements Diversity {
 	}
 	
 	private void createInputs(){
-		//TODO Change to not require even amount of sensors aka (x and y coordinates)
+		//Generates values based on sensor order being x as odd and y as even
 		
 		for(int i = 0; i<AMOUNT_OF_TESTS; i++){
-			for(int d = 0; d<AMOUNT_OF_INPUTS/2; d=d+2){ 
-				testInputs[i][d] = (int)(Math.random() * (Config.WIDTH + 1));
-				testInputs[i][d+1] = (int)(Math.random() * (Config.HEIGHT + 1));
+			for(int d = 0; d<AMOUNT_OF_INPUTS; d++){ 
+				if(d%2 == 0){
+					testInputs[i][d] = (int)(Math.random() * (Config.WIDTH + 1));
+				}else{
+					testInputs[i][d] = (int)(Math.random() * (Config.HEIGHT + 1));
+				}
 			
 			}
 		}
@@ -34,7 +37,7 @@ public class PhenotypeDiversity implements Diversity {
 	
 	@Override
 	public double[] calculateDiversity(Animal[] population) {
-		// TODO Auto-generated method stub
+		
 		double diversity = 0.0;
 		double [][] generatedOutputs = new double[population.length][Config.actions.length];
 		for(int d = 0; d<AMOUNT_OF_TESTS; d++){
@@ -47,12 +50,7 @@ public class PhenotypeDiversity implements Diversity {
 			
 			diversity += diversityHamming(generatedOutputs);
 		}
-		//AVG diversity
-		int normalizer = 0;
-		for(int i = 1; i <population.length; i++){
-			normalizer += i;
-		}
-		
+			
 		diversity = diversity / AMOUNT_OF_TESTS / population.length;
 		
 		double[] result = {diversity};

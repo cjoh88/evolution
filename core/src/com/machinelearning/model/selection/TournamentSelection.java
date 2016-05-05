@@ -40,16 +40,22 @@ public class TournamentSelection implements Selection2 {
 	private Animal tournamentSelect(Animal[] input){
 		Animal[] tournamentPool = new Animal[tournamentPoolSize];
 		
+		
+		/*This to avoid getting stuck in a infinite loop incase individuals are lower than the tourneypool */
+		int alreadyPickedTries = 0;
+		int MaximimumTries = 10; 
+		
 		for(int i =0; i<tournamentPoolSize; i++){
 			Animal newAnimal =  input[(int)(Math.random() * input.length)];
 			
-			/*if(alreadyPicked(tournamentPool,newAnimal)){ //Could add a count of how many times to do this to not force a possible infinite loop
+			if(alreadyPickedTries < 10 && alreadyPicked(tournamentPool,newAnimal)){ 
 				i--;
+				alreadyPickedTries++;
 			}
 			
-			else{*/
+			else{
 				tournamentPool[i] = newAnimal;
-			//}
+			}
 		}
 		
 		Arrays.sort(tournamentPool, fitnessComparator);
