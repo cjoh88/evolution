@@ -38,6 +38,13 @@ public class GA {
 		int numCrossovers;
 		int numElitism;
 		int numIndividuals = pop.length;
+		
+		
+		for (Animal animal : pop) {
+			animal.alive = true;
+			animal.energy = 1000;
+		}
+		
 		if (pop[0].getFood()[0] instanceof Plant) {
 			numCrossovers = Config.NUM_CROSSOVER_CHILDREN_PREY;
 			numElitism = Config.NUM_ELITISM_PREY;

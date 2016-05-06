@@ -33,6 +33,8 @@ public class Animal implements Food {
 	private MultiLayerPerceptron ann;
 
 	public int fitness;
+	public int energy = 1000;
+	
 	private Environment environment;
 
 	private Food[] food;
@@ -43,7 +45,7 @@ public class Animal implements Food {
 
 	public boolean alive = true;
 
-	private static final float MAX_SPEED = 15.0f;
+	private static final float MAX_SPEED = Config.MAX_SPEED;
 	private float speed;
 
 	private Color color;
@@ -95,6 +97,14 @@ public class Animal implements Food {
 		}
 	}
 
+	public void consumeEnergy() {
+		if(!Config.INFINITE_ENERGY){
+			energy--;
+			if(energy<0)
+				alive=false;
+		}
+	}
+	
 	public void update(float delta) {
 		velocity.nor();
 		velocity.scl(speed);
@@ -148,6 +158,7 @@ public class Animal implements Food {
 				// TODO include ID in log
 				// Utility.log("Animal " + id + " found food at " + f.x() + ", "
 				// + f.y());
+				energy=1000;
 				fitness += Config.FOOD_REWARD;
 				f.eaten();
 			}

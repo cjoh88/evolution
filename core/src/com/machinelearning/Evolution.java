@@ -41,10 +41,12 @@ public class Evolution extends Game {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		System.out.println("Best Prey:");
-		System.out.println(Arrays.toString(mainScreen.environment.getPrey()[0].getGenome()));
+		if(mainScreen.environment.getPrey().length>0)
+			System.out.println(Arrays.toString(mainScreen.environment.getPrey()[0].getGenome()));
 		
 		System.out.println("Best Pred:");
-		System.out.println(Arrays.toString(mainScreen.environment.getPred()[0].getGenome()));
+		if(mainScreen.environment.getPred().length>0)
+			System.out.println(Arrays.toString(mainScreen.environment.getPred()[0].getGenome()));
 	}
 
 }
