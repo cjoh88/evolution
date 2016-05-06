@@ -23,9 +23,12 @@ public class StatChart extends JFrame {
 		setLayout(new GridLayout(2, 2));
 		setSize(1000, 700);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
 		setLocationRelativeTo(null);
 		setVisible(true);
+
 	}
 
 	public Statistics statAdd(String namn, String xStr, String yStr) {
@@ -57,5 +60,6 @@ public class StatChart extends JFrame {
 				PlotOrientation.VERTICAL, true, false, false);
 		return new ChartPanel(chart);
 	}
+
 
 }

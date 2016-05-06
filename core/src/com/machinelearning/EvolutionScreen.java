@@ -1,5 +1,7 @@
 package com.machinelearning;
 
+import java.util.Arrays;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,7 +13,7 @@ import com.machinelearning.view.EnvironmentRenderer;
 
 public class EvolutionScreen implements Screen{
 	
-	private Environment environment;
+	public Environment environment;
 	private EnvironmentRenderer renderer;
 	
 	private OrthographicCamera camera;
@@ -74,8 +76,7 @@ public class EvolutionScreen implements Screen{
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+
 	}
 	
 	public void toggleRender() {

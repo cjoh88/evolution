@@ -1,10 +1,14 @@
 package com.machinelearning;
 
+import java.util.Arrays;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
 public class Evolution extends Game {
 	// SpriteBatch batch;
@@ -31,5 +35,16 @@ public class Evolution extends Game {
 		// batch.draw(img, 0, 0);
 		// batch.end();
 	}
-	// HEJ
+	
+	
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		System.out.println("Best Prey:");
+		System.out.println(Arrays.toString(mainScreen.environment.getPrey()[0].getGenome()));
+		
+		System.out.println("Best Pred:");
+		System.out.println(Arrays.toString(mainScreen.environment.getPred()[0].getGenome()));
+	}
+
 }

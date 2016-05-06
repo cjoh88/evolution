@@ -27,14 +27,16 @@ public class Environment {
 	// public static final int STEPS_PER_GENERATION = 6000;
 	private int generation = 1;
 	private double time = 0;
-//	private DiversityPlot DP = new DiversityPlot();
+	// private DiversityPlot DP = new DiversityPlot();
 
 	private StatChart statPlot = new StatChart();
 	Statistics preyPlot, predPlot;
 	DiversityData diversityPlot;
-	
-//	private statistics statPlotPrey = new statistics("PREY: Fitness/Generation");
-//	private statistics statPlotPredator = new statistics("PREDATOR: Fitness/Generation");
+
+	// private statistics statPlotPrey = new statistics("PREY:
+	// Fitness/Generation");
+	// private statistics statPlotPredator = new statistics("PREDATOR:
+	// Fitness/Generation");
 
 	/*
 	 * Add sensors and actions to respective array
@@ -69,9 +71,9 @@ public class Environment {
 			pred[i] = new Animal(this, Config.sensors, Config.actions, prey);
 		}
 
-		if(Config.PLOT_STATS){
-			preyPlot = statPlot.statAdd("PREY fitness/generation",  "Generation", "Fitness");
-			predPlot = statPlot.statAdd("Predator fitness/generation",  "Generation", "Fitness");
+		if (Config.PLOT_STATS) {
+			preyPlot = statPlot.statAdd("PREY fitness/generation", "Generation", "Fitness");
+			predPlot = statPlot.statAdd("Predator fitness/generation", "Generation", "Fitness");
 			diversityPlot = statPlot.addPlot("Population diversity", "Generation", "Diversity");
 		}
 
@@ -107,7 +109,6 @@ public class Environment {
 		}
 		time += delta;
 		if (time >= Config.TIME_PER_GENERATION) {
-			// TODO Create new generation
 
 			if (Config.PLOT_STATS) {
 				Arrays.sort(prey, fitnessComparator);
@@ -116,45 +117,46 @@ public class Environment {
 				int tmpFit = 0;
 				for (int i = 0; i < prey.length; i++)
 					tmpFit += prey[i].fitness();
-				tmpFit = tmpFit / (prey.length+1);
+				tmpFit = tmpFit / (prey.length + 1);
 
-				if(prey.length>0)
+				if (prey.length > 0)
 					preyPlot.addFitness(tmpFit, prey[0].fitness(), generation);
-				
+
 				tmpFit = 0;
 				for (int i = 0; i < pred.length; i++)
 					tmpFit += pred[i].fitness();
-				tmpFit = tmpFit / (pred.length+1);
+				tmpFit = tmpFit / (pred.length + 1);
 
-				if(pred.length>0)
+				if (pred.length > 0)
 					predPlot.addFitness(tmpFit, pred[0].fitness(), generation);
-				
-				//DP.plot(prey, pred, generation);
+
+				// DP.plot(prey, pred, generation);
 				diversityPlot.addFitness(prey, pred, generation);
 			}
 
-			if(prey.length>0)
+			if (prey.length > 0)
 				gaPrey.compute(prey);
-			
-			if(pred.length>0)
+
+			if (pred.length > 0)
 				gaPred.compute(pred);
 			time = 0;
 
 			generation++;
 			Utility.log("Generation " + generation + " has started.");
 
+			
 		}
 
 	}
 
-	private boolean isAllPreyDead(Animal[] prey){
-		for(int i = 0; i<prey.length; i++){
-			if(prey[i].alive){
+	private boolean isAllPreyDead(Animal[] prey) {
+		for (int i = 0; i < prey.length; i++) {
+			if (prey[i].alive) {
 				return false;
 			}
 		}
 		return true;
-		
+
 	}
 
 	private static Comparator<Animal> fitnessComparator = new Comparator<Animal>() {
@@ -205,7 +207,7 @@ public class Environment {
 	public Animal getNearestPredator(Vector2 position) {
 		float distance = Float.MAX_VALUE;
 		Animal result = null;
-		
+
 		for (Animal a : pred) {
 			float d = position.dst2(a.getPosition());
 			if (d < distance) {
@@ -224,4 +226,5 @@ public class Environment {
 		return Config.actions;
 	}
 
+	
 }
