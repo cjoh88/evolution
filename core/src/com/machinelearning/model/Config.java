@@ -8,8 +8,8 @@ import com.machinelearning.model.crossover.TwoPoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
-import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
+import com.machinelearning.model.selection.TournamentSelection;
 import com.machinelearning.model.sensor.AnimalDistanceSensor;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
@@ -25,10 +25,10 @@ public class Config {
 	 */
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PREY = 6;
+	public final static int NUM_ELITISM_PREY = 5;
 	
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PREY = 33;
+	public final static int NUM_CROSSOVER_CHILDREN_PREY = 35;
 	
 	// Number of individuals in the population
 	public static final int NUM_INDIVIDUALS_PREY = 40;
@@ -53,13 +53,13 @@ public class Config {
 	 */
 	
 	// Number of individuals to survive per generation
-	public final static int NUM_ELITISM_PRED = 4;
+	public final static int NUM_ELITISM_PRED = 5;
 		
 	// Number of new children produced by crossover (Might be rounded down depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 20;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 25;
 	
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 40;
+	public static final int NUM_INDIVIDUALS_PRED = 30;
 	
 	
 	/*
@@ -85,8 +85,11 @@ public class Config {
 	// Plot fitness information in a graph
 	public static final boolean PLOT_STATS = true;
 	
+	// Plot diversity information in a graph (sever performance penalty (50%) )
+	public static final boolean PLOT_DIVERSITY = false;
+	
 	// Selection function for crossover (performance penalty)
-	public static final Selection2 SELECTION = new RankSelection();
+	public static final Selection2 SELECTION = new TournamentSelection();
 	
 	/// Crossover function
 	public static final Crossover2 CROSSOVER = new TwoPoint();
