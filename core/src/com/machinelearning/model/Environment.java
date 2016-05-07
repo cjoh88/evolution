@@ -49,8 +49,8 @@ public class Environment {
 	private Animal pred[] = new Animal[Config.NUM_INDIVIDUALS_PRED];
 	private Plant food[] = new Plant[Config.NUM_PLANT];
 
-	private GA gaPrey;
-	private GA gaPred;
+	public GA gaPrey;
+	public GA gaPred;
 
 	public Environment() {
 		// Initialize Sensors

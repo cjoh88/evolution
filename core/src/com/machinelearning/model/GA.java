@@ -18,8 +18,10 @@ public class GA {
 	Mutation mutation;
 	int generation;
 
-	private Animal highestFitness = null;
-
+	public Animal highestFitness = null;
+	
+	public Animal hallOfFame = null;
+	
 	private static Comparator<Animal> fitnessComparator = new Comparator<Animal>() {
 		@Override
 		public int compare(Animal a1, Animal a2) {
@@ -61,6 +63,9 @@ public class GA {
 		System.out.println(pop[0].fitness());
 
 		highestFitness = pop[0];
+		if(hallOfFame.fitness<highestFitness.fitness)
+			hallOfFame = highestFitness.copy();
+		
 		highestFitness.setAsHighestFitness();
 
 		ArrayList<Animal> newPop = new ArrayList<Animal>();
@@ -88,6 +93,8 @@ public class GA {
 			mutation.mutate(a);
 		}
 
+		
+		
 		// newPop.addAll(endSelect.select((ArrayList<Animal>)pop.subList(Config.NUM_ELITISM,
 		// pop.size()),pop.size()-newPop.size()));
 
@@ -97,6 +104,10 @@ public class GA {
 			pop[i].alive = true;
 		}
 
+		if(Config.HALL_OF_FAME){
+			pop[pop.length-1] = hallOfFame.copy();
+			pop[pop.length-1].alive = true;
+		}
 	}
 
 }
