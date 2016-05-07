@@ -33,7 +33,7 @@ public class Animal implements Food {
 	private MultiLayerPerceptron ann;
 
 	public int fitness;
-	public int energy = 1000;
+	public int energy = Config.MAX_ENERGY;
 	
 	private Environment environment;
 
@@ -65,7 +65,7 @@ public class Animal implements Food {
 		// this.ann = new NeuralNetwork(sensors.length, sensors.length * 2,
 		// actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length / 2,
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.TANH, sensors.length, sensors.length, sensors.length/2 + 2,
 				actions.length);
 
 		this.fitness = 0;
@@ -100,8 +100,10 @@ public class Animal implements Food {
 	public void consumeEnergy() {
 		if(!Config.INFINITE_ENERGY){
 			energy--;
-			if(energy<0)
+			if(energy<0){
+				fitness -= Config.STARVATION_PENALTY;
 				alive=false;
+			}
 		}
 	}
 	
@@ -158,8 +160,8 @@ public class Animal implements Food {
 				// TODO include ID in log
 				// Utility.log("Animal " + id + " found food at " + f.x() + ", "
 				// + f.y());
-				energy=1000;
-				fitness += Config.FOOD_REWARD;
+				energy += Config.FOOD_ENERGY_REWARD;
+				fitness += Config.FOOD_FITNESS_REWARD;
 				f.eaten();
 			}
 		}
@@ -263,8 +265,8 @@ public class Animal implements Food {
 
 		if (Config.KILL_ON_EATEN) {
 			alive = false;
-			position.x = 9999;
-			position.y = 9999;
+			position.x = 111;
+			position.y = 111;
 		}
 	}
 
