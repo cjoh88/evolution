@@ -100,6 +100,9 @@ public class Environment {
 			}
 		}
 		
+//		for (Animal animal : pred) //REMOVE THIS LOOP
+//			animal.setMaxSpeed(0.0f);
+		
 		for (Animal animal : prey)
 			if (animal.alive)
 				animal.consumeEnergy();	

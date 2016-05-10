@@ -45,7 +45,7 @@ public class Animal implements Food {
 
 	public boolean alive = true;
 
-	private static final float MAX_SPEED = Config.MAX_SPEED;
+	private float maxSpeed = Config.MAX_SPEED;
 	private float speed;
 
 	private Color color;
@@ -65,7 +65,7 @@ public class Animal implements Food {
 		// this.ann = new NeuralNetwork(sensors.length, sensors.length * 2,
 		// actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.TANH, sensors.length, sensors.length, sensors.length/2 + 2,
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.TANH, sensors.length, sensors.length, sensors.length+2,
 				actions.length);
 
 		this.fitness = 0;
@@ -237,7 +237,11 @@ public class Animal implements Food {
 	}
 
 	public float getMaxSpeed() {
-		return MAX_SPEED;
+		return maxSpeed;
+	}
+	
+	public void setMaxSpeed(float s) {
+		maxSpeed = s;
 	}
 
 	public void setSpeed(float s) {

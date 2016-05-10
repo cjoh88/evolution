@@ -63,7 +63,8 @@ public class GA {
 		System.out.println(pop[0].fitness());
 
 		highestFitness = pop[0];
-		if(hallOfFame.fitness<highestFitness.fitness)
+		
+		if(highestFitness == null || hallOfFame == null || hallOfFame.fitness<highestFitness.fitness)
 			hallOfFame = highestFitness.copy();
 		
 		highestFitness.setAsHighestFitness();
