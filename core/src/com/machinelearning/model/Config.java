@@ -142,7 +142,11 @@ public class Config {
 
 	// The weights used to initiate the population if INIT_SET_GENOME is true
 	// !EVERY individual in the population will be set to this!
-	public static final double[] INIT_GENOME_PRED = {};
+	public static final double[] INIT_GENOME_PRED = {
+			
+			
+			
+	};
 
 	/*
 	 * MAP general configuration
