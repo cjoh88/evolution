@@ -5,9 +5,9 @@ import java.util.Comparator;
 
 import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.Utility;
-import com.machinelearning.diversity.DiversityPlot;
 import com.machinelearning.model.action.Action;
 import com.machinelearning.model.sensor.Sensor;
+import com.machinelearning.statistics.DeathToll;
 import com.machinelearning.statistics.DiversityData;
 import com.machinelearning.statistics.StatChart;
 import com.machinelearning.statistics.Statistics;
@@ -32,7 +32,8 @@ public class Environment {
 	private StatChart statPlot = new StatChart();
 	Statistics preyPlot, predPlot;
 	DiversityData diversityPlot;
-
+	DeathToll preyDead, predDead;
+	
 	// private statistics statPlotPrey = new statistics("PREY:
 	// Fitness/Generation");
 	// private statistics statPlotPredator = new statistics("PREDATOR:
@@ -84,6 +85,9 @@ public class Environment {
 		if (Config.PLOT_STATS) {
 			preyPlot = statPlot.statAdd("PREY fitness/generation", "Generation", "Fitness");
 			predPlot = statPlot.statAdd("Predator fitness/generation", "Generation", "Fitness");
+			preyDead = statPlot.statAddDT("Death toll", "Generation", "Dead");
+			predDead = statPlot.statAddDT("Death toll", "Generation", "Dead");
+			
 			if (Config.PLOT_DIVERSITY)
 				diversityPlot = statPlot.addPlot("Population diversity", "Generation", "Diversity");
 		}
@@ -100,29 +104,37 @@ public class Environment {
 			}
 		}
 		
-		for (Animal animal : pred) //REMOVE THIS LOOP
-			animal.setMaxSpeed(0.0f);
+		if(Config.PRED_MOVEMENT)
+			for (Animal animal : pred)
+				animal.setMaxSpeed(0.0f);
 		
 		for (Animal animal : prey)
 			if (animal.alive)
 				animal.consumeEnergy();	
 		
-		for (Animal animal : pred)
-			if (animal.alive)
-				animal.consumeEnergy();
+		if(Config.PRED_MOVEMENT)
+			for (Animal animal : pred)
+				if (animal.alive)
+					animal.consumeEnergy();
 		
-		for (Animal animal : pred) {
-			if (animal.alive)
-				animal.readSensorData();
-		}
+		
+		if(Config.PRED_MOVEMENT)
+			for (Animal animal : pred) {
+				if (animal.alive)
+					animal.readSensorData();
+			}
+		
+		
 		for (Animal animal : prey) {
 			if (animal.alive)
 				animal.executeAction();
 		}
+		
 		for (Animal animal : pred) {
 			if (animal.alive)
 				animal.executeAction();
 		}
+
 		for (Animal animal : prey) {
 			if (animal.alive)
 				animal.update(delta);
@@ -165,7 +177,30 @@ public class Environment {
 				if (pred.length > 0)
 					predPlot.addFitness(tmpFit, pred[0].fitness(), generation);
 
-				// DP.plot(prey, pred, generation);
+				int deadPreyNat=0;
+				int deadPreyKil=0;
+				for (Animal animal : prey)
+					if(!animal.alive)
+						if(animal.starvation){
+							deadPreyNat++;
+						}else{
+							deadPreyKil++;
+						}
+				
+				int deadPredNat=0;
+				int deadPredKil=0;
+				for (Animal animal : pred)
+					if(!animal.alive)
+						if(animal.starvation){
+							deadPredNat++;
+						}else{
+							deadPredKil++;
+						}
+				
+				preyDead.addDead(deadPreyNat, deadPreyKil, generation);
+				predDead.addDead(deadPredNat, deadPredKil, generation);
+				
+
 				if (Config.PLOT_DIVERSITY)
 					diversityPlot.addFitness(prey, pred, generation);
 			}
