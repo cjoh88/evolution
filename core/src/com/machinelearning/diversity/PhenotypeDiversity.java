@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.neuroph.nnet.MultiLayerPerceptron;
 
+import com.machinelearning.Utility;
 import com.machinelearning.model.Animal;
 import com.machinelearning.model.Config;
 
@@ -12,7 +13,7 @@ public class PhenotypeDiversity implements Diversity {
 	double[][] testInputs; // Cannot change during evolution (Maybe make fixed
 							// for several runs too?)
 	private static final int AMOUNT_OF_INPUTS = Config.sensors.length;
-	private static final int AMOUNT_OF_TESTS = 1000;
+	private static final int AMOUNT_OF_TESTS = 100;
 
 	public PhenotypeDiversity() {
 		testInputs = new double[AMOUNT_OF_TESTS][AMOUNT_OF_INPUTS];
@@ -24,17 +25,16 @@ public class PhenotypeDiversity implements Diversity {
 		// Generates values based on sensor order being x as odd and y as even
 
 		for (int i = 0; i < AMOUNT_OF_TESTS; i++) {
-			for (int d = 0; d < AMOUNT_OF_INPUTS; d++) {
-				if (d % 2 == 0) {
-					testInputs[i][d] = (int) (Math.random() * (Config.WIDTH + 1));
-				} else {
-					testInputs[i][d] = (int) (Math.random() * (Config.HEIGHT + 1));
-				}
-
+			for (int d = 0; d < AMOUNT_OF_INPUTS/2; d=d+2) {
+				
+				testInputs[i][d] = Utility.random.nextDouble();    //X
+				testInputs[i][d+1] = Math.sqrt(1-Math.pow(testInputs[i][d], 2)); //Y
 			}
-		}
 
+		}
 	}
+
+	
 
 	@Override
 	public double[] calculateDiversity(Animal[] population) {

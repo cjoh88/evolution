@@ -4,7 +4,7 @@ import com.machinelearning.model.action.Action;
 import com.machinelearning.model.action.SpeedAction;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
-import com.machinelearning.model.crossover.OnePoint;
+import com.machinelearning.model.crossover.TwoPoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
@@ -60,7 +60,7 @@ public class Config {
 
 	// The weights are initiated with a specific value (INIT_GENOME below) if
 	// INIT_SET_GENOME is true
-	public static final boolean INIT_SET_GENOME_PREY = true;
+	public static final boolean INIT_SET_GENOME_PREY = false;
 
 	// The weights used to initiate the population if INIT_SET_GENOME is true
 	// !EVERY individual in the population will be set to this!
@@ -175,18 +175,18 @@ public class Config {
 	public static final boolean HALL_OF_FAME = true;
 
 	// Plot diversity information in a graph (sever performance penalty (50%) )
-	public static final boolean PLOT_DIVERSITY = false;
+	public static final boolean PLOT_DIVERSITY = true;
 
 	// Selection function for crossover (performance penalty)
 	public static final Selection2 SELECTION = new RankSelection();
 
 	/// Crossover function
-	public static final Crossover2 CROSSOVER = new OnePoint();
+	public static final Crossover2 CROSSOVER = new TwoPoint();
 
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();
 
-	public static final float MUTATION_RATE = 0.15f;// 1f /
+	public static final float MUTATION_RATE = 0.15f/NUM_INDIVIDUALS_PREY/15;// 1f /
 													// NUM_INDIVIDUALS_PREY;
 	public static final double MUTATION_RANGE = 0.25f;
 	/*----------------------------------------------------------------*/
