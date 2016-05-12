@@ -8,8 +8,8 @@ import com.machinelearning.model.crossover.TwoPoint;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
-import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
+import com.machinelearning.model.selection.TournamentSelection;
 import com.machinelearning.model.sensor.AnimalDistanceSensor;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
@@ -34,13 +34,13 @@ public class Config {
 	public static final int NUM_INDIVIDUALS_PREY = 50;
 
 	// Penalty for being eaten
-	public static final double EATEN_PENALTY = 1000;
+	public static final double EATEN_PENALTY = 2000;
 
 	// Penalty for starvibng - not eating, out of energy
-	public static final double STARVATION_PENALTY = 500;
+	public static final double STARVATION_PENALTY = 2000;
 
 	// Reward for eating Fitness
-	public static final double FOOD_FITNESS_REWARD = 250;
+	public static final double FOOD_FITNESS_REWARD = 100;
 
 	// Controls re-spawn/permanent death on being eaten
 	public static final boolean KILL_ON_EATEN = true;
@@ -131,10 +131,10 @@ public class Config {
 
 	// Number of new children produced by crossover (Might be rounded down
 	// depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 15;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 30;
 
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 20;
+	public static final int NUM_INDIVIDUALS_PRED = 35;
 
 	// The weights are initiated with a specific value (INIT_GENOME below) if
 	// INIT_SET_GENOME is true
@@ -175,10 +175,10 @@ public class Config {
 	public static final boolean HALL_OF_FAME = true;
 
 	// Plot diversity information in a graph (sever performance penalty (50%) )
-	public static final boolean PLOT_DIVERSITY = true;
+	public static final boolean PLOT_DIVERSITY = false;
 
 	// Selection function for crossover (performance penalty)
-	public static final Selection2 SELECTION = new RankSelection();
+	public static final Selection2 SELECTION = new TournamentSelection();
 
 	/// Crossover function
 	public static final Crossover2 CROSSOVER = new TwoPoint();
@@ -186,7 +186,7 @@ public class Config {
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();
 
-	public static final float MUTATION_RATE = 0.15f/NUM_INDIVIDUALS_PREY/15;// 1f /
+	public static final float MUTATION_RATE = 0.005f;
 													// NUM_INDIVIDUALS_PREY;
 	public static final double MUTATION_RANGE = 0.25f;
 	/*----------------------------------------------------------------*/

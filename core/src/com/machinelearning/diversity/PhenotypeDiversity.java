@@ -13,7 +13,7 @@ public class PhenotypeDiversity implements Diversity {
 	double[][] testInputs; // Cannot change during evolution (Maybe make fixed
 							// for several runs too?)
 	private static final int AMOUNT_OF_INPUTS = Config.sensors.length;
-	private static final int AMOUNT_OF_TESTS = 100;
+	private static final int AMOUNT_OF_TESTS = 1000;
 
 	public PhenotypeDiversity() {
 		testInputs = new double[AMOUNT_OF_TESTS][AMOUNT_OF_INPUTS];
