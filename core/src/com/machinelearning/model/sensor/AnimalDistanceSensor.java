@@ -15,18 +15,21 @@ public class AnimalDistanceSensor extends Sensor {
 	@Override
 	public float readSensorValue(Animal animal) {
 		Animal a;
+		float f = 1.0f;
 		if (c == 'p') {
-			a = environment.getNearestPredator(animal.getPosition());
+			a = environment.getNearestPredator(animal);
+			f = environment.findDistance(animal.getPosition(), a.getPosition());
 		} else {
-			a = environment.getNearestAnimal(animal.getPosition());
+			a = environment.getNearestAnimal(animal);
+			f = environment.findDistance(animal.position, a.position);
 		}
 
-		Vector2 target = new Vector2();
+		/*Vector2 target = new Vector2();
 
 		if (a != null)
 			target = a.position.cpy().sub(animal.position);
-
-		float f = target.len() / Config.WIDTH;
+*/
+		f /= Config.WIDTH/2;
 		if (f > 1.0f) {
 			f = 1.0f;
 		}
