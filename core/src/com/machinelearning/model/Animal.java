@@ -34,7 +34,7 @@ public class Animal implements Food {
 
 	public int fitness;
 	public int energy = Config.MAX_ENERGY;
-	
+
 	private Environment environment;
 
 	private Food[] food;
@@ -44,6 +44,8 @@ public class Animal implements Food {
 	// public Vector2 velocity;
 
 	public boolean alive = true;
+	public boolean starvation = false;
+	public boolean killed = false;
 
 	private float maxSpeed = Config.MAX_SPEED;
 	private float speed;
@@ -65,7 +67,7 @@ public class Animal implements Food {
 		// this.ann = new NeuralNetwork(sensors.length, sensors.length * 2,
 		// actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.TANH, sensors.length, sensors.length, sensors.length+2,
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length*2,
 				actions.length);
 
 		this.fitness = 0;
@@ -98,15 +100,16 @@ public class Animal implements Food {
 	}
 
 	public void consumeEnergy() {
-		if(!Config.INFINITE_ENERGY){
+		if (!Config.INFINITE_ENERGY) {
 			energy--;
-			if(energy<0){
+			if (energy < 0) {
 				fitness -= Config.STARVATION_PENALTY;
-				alive=false;
+				starvation = true;
+				alive = false;
 			}
 		}
 	}
-	
+
 	public void update(float delta) {
 		velocity.nor();
 		velocity.scl(speed);
@@ -114,29 +117,29 @@ public class Animal implements Food {
 		position.add(velocity);
 		// velocity.x = velocity.x;
 		// velocity.y = velocity.y;
-		if(Config.WALL_PORTAL){
+		if (Config.WALL_PORTAL) {
 			wrapAround();
-		}else{
+		} else {
 			checkBounds();
 		}
-		
+
 		hasFoundFood();
 	}
 
 	private void checkBounds() {
 		if (position.x >= Config.WIDTH) {
 			position.x = Config.WIDTH - 0.1f;
-			//velocity.scl(-1);
+			// velocity.scl(-1);
 		} else if (position.x < 0) {
 			position.x = 0.1f;
-			//velocity.scl(-1);
+			// velocity.scl(-1);
 		}
 		if (position.y >= Config.HEIGHT) {
 			position.y = Config.HEIGHT - 0.1f;
-			//velocity.scl(-1);
+			// velocity.scl(-1);
 		} else if (position.y < 0) {
 			position.y = 0.1f;
-			//velocity.scl(-1);
+			// velocity.scl(-1);
 		}
 	}
 
@@ -239,7 +242,7 @@ public class Animal implements Food {
 	public float getMaxSpeed() {
 		return maxSpeed;
 	}
-	
+
 	public void setMaxSpeed(float s) {
 		maxSpeed = s;
 	}
@@ -269,6 +272,7 @@ public class Animal implements Food {
 
 		if (Config.KILL_ON_EATEN) {
 			alive = false;
+			killed = true;
 			position.x = 111;
 			position.y = 111;
 		}

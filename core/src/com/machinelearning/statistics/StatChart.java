@@ -39,6 +39,16 @@ public class StatChart extends JFrame {
 
 		return stats;
 	}
+	
+
+	public DeathToll statAddDT(String namn, String xStr, String yStr) {
+		DeathToll stats = new DeathToll();
+		JPanel chartPanel = createChartPanel(stats.dataset, namn, xStr, yStr);
+		add(chartPanel);
+		setVisible(true);
+
+		return stats;
+	}
 
 	public DiversityData addPlot(String namn, String xStr, String yStr) {
 

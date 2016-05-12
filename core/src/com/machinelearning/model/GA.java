@@ -44,7 +44,9 @@ public class GA {
 		
 		for (Animal animal : pop) {
 			animal.alive = true;
-			animal.energy = 1000;
+			animal.starvation = false;
+			animal.killed = false;		
+			animal.energy = Config.MAX_ENERGY;
 		}
 		
 		if (pop[0].getFood()[0] instanceof Plant) {
