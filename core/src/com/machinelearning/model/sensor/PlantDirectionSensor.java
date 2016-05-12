@@ -16,8 +16,9 @@ public class PlantDirectionSensor extends Sensor{
 	@Override
 	public float readSensorValue(Animal animal) {
 		Plant food = environment.getNearestPlant(animal.position);
-		Vector2 target = food.position.cpy().sub(animal.position);
-		target.nor();
+		//Vector2 target = food.position.cpy().sub(animal.position);
+		//target.nor();
+		Vector2 target = environment.findDirection(animal.getPosition(), food.getPosition());
 		if(c == 'y') {
 			return target.y;
 		}

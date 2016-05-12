@@ -252,7 +252,10 @@ public class Environment {
 		float distance = Float.MAX_VALUE;
 		Plant result = null;
 		for (Plant f : food) {
-			float d = position.dst2(f.position);
+			float x = f.getPosition().x;
+			float y = f.getPosition().y;
+			//float d = position.dst2(x,y);
+			float d = findDistance(position, f.getPosition());
 			if (d < distance) {
 				distance = d;
 				result = f;
@@ -261,11 +264,18 @@ public class Environment {
 		return result;
 	}
 
-	public Animal getNearestAnimal(Vector2 position) {
+	public Animal getNearestAnimal(Animal animal) {
 		float distance = Float.MAX_VALUE;
 		Animal result = null;
+		Vector2 position = animal.getPosition();
 		for (Animal a : prey) {
-			float d = position.dst2(a.getPosition());
+			if (a == animal) {
+				continue;
+			}
+			float x = a.getPosition().x;
+			float y = a.getPosition().y;
+			//float d = position.dst2(x,y);
+			float d = findDistance(position, a.getPosition());
 			if (d < distance) {
 				distance = d;
 				result = a;
@@ -274,12 +284,18 @@ public class Environment {
 		return result;
 	}
 
-	public Animal getNearestPredator(Vector2 position) {
+	public Animal getNearestPredator(Animal animal) {
 		float distance = Float.MAX_VALUE;
 		Animal result = null;
-
+		Vector2 position = animal.getPosition();
 		for (Animal a : pred) {
-			float d = position.dst2(a.getPosition());
+			if(a == animal) {
+				continue;
+			}
+			float x = a.getPosition().x;
+			float y = a.getPosition().y;
+			//float d = position.dst2(x,y);
+			float d = findDistance(position, a.getPosition());
 			if (d < distance) {
 				distance = d;
 				result = a;
@@ -287,7 +303,36 @@ public class Environment {
 		}
 		return result;
 	}
+	
+	public float findDistance(Vector2 v1, Vector2 v2) {
+		float distance = Float.MAX_VALUE;
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<3; j++) {
+				float d = v1.dst2((i-1) * Config.WIDTH + v2.x, (j-1) * Config.HEIGHT + v2.y);
+				if(d<distance) {
+					distance = d;
+				}
+			}
+		}
+		return distance;
+	}
 
+	public Vector2 findDirection(Vector2 v1, Vector2 v2) {
+		float distance = Float.MAX_VALUE;
+		Vector2 direction = new Vector2();
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<3; j++) {
+				float d = v1.dst2((i-1) * Config.WIDTH + v2.x, (j-1) * Config.HEIGHT + v2.y);
+				if(d<distance) {
+					distance = d;
+					direction.add(v2.cpy().sub(v1));
+				}
+			}
+		}
+		return direction.nor();
+	}
+
+	
 	public Sensor[] getSensors() {
 		return Config.sensors;
 	}
