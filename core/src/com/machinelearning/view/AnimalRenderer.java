@@ -31,7 +31,7 @@ public class AnimalRenderer {
 					shapeRenderer.setColor(animal.color());
 					//shapeRenderer.box(x, y, z, width, height, depth); 
 					//shapeRenderer.rect(animal.x(), animal.y(), 0.5f, 0.5f);
-					shapeRenderer.circle(animal.x(), animal.y(), 0.2f, 5);
+					shapeRenderer.circle(animal.x(), animal.y(), 0.5f, 5);
 				}
 			}
 		shapeRenderer.end();
