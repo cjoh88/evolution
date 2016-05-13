@@ -273,8 +273,8 @@ public class Animal implements Food {
 		if (Config.KILL_ON_EATEN) {
 			alive = false;
 			killed = true;
-			position.x = 111;
-			position.y = 111;
+			position.x = -111;
+			position.y = -111;
 		}
 	}
 
