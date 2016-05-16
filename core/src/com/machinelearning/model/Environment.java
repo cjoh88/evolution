@@ -104,7 +104,7 @@ public class Environment {
 			}
 		}
 		
-		if(Config.PRED_MOVEMENT)
+		if(!Config.PRED_MOVEMENT)
 			for (Animal animal : pred)
 				animal.setMaxSpeed(0.0f);
 		
@@ -339,6 +339,10 @@ public class Environment {
 
 	public Action[] getActions() {
 		return Config.actions;
+	}
+	
+	public int getGeneration() {
+		return generation;
 	}
 
 }

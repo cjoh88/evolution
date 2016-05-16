@@ -5,11 +5,12 @@ import com.machinelearning.model.action.SpeedAction;
 import com.machinelearning.model.action.TurnAction;
 import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.crossover.OnePoint;
+import com.machinelearning.model.crossover.UniformNeuronCrossover;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.mutation.UniformMutation;
 import com.machinelearning.model.selection.RandomSelection;
+import com.machinelearning.model.selection.RankSelection;
 import com.machinelearning.model.selection.Selection2;
-import com.machinelearning.model.selection.TournamentSelection;
 import com.machinelearning.model.sensor.AnimalDistanceSensor;
 import com.machinelearning.model.sensor.DirectionSensor;
 import com.machinelearning.model.sensor.PlantDirectionSensor;
@@ -34,13 +35,13 @@ public class Config {
 	public static final int NUM_INDIVIDUALS_PREY = 50;
 
 	// Penalty for being eaten
-	public static final double EATEN_PENALTY = 4000;
+	public static final double EATEN_PENALTY = 100;
 
 	// Penalty for starvibng - not eating, out of energy
-	public static final double STARVATION_PENALTY = 1000;
+	public static final double STARVATION_PENALTY = 100;
 
 	// Reward for eating Fitness
-	public static final double FOOD_FITNESS_REWARD = 250;
+	public static final double FOOD_FITNESS_REWARD = 100;
 
 	// Controls re-spawn/permanent death on being eaten
 	public static final boolean KILL_ON_EATEN = true;
@@ -75,10 +76,10 @@ public class Config {
 
 	// Number of new children produced by crossover (Might be rounded down
 	// depending on crossover operator)
-	public final static int NUM_CROSSOVER_CHILDREN_PRED = 30;
+	public final static int NUM_CROSSOVER_CHILDREN_PRED = 20;
 
 	// Number of individuals in the population
-	public static final int NUM_INDIVIDUALS_PRED = 50;
+	public static final int NUM_INDIVIDUALS_PRED = 25;
 
 	// The weights are initiated with a specific value (INIT_GENOME below) if
 	// INIT_SET_GENOME is true
@@ -97,7 +98,7 @@ public class Config {
 	 */
 
 	// Number of food pieces in the environment
-	public static final int NUM_PLANT = 45;
+	public static final int NUM_PLANT = 60;
 
 	// Width of the environment
 	public static final int WIDTH = 140;
@@ -106,7 +107,7 @@ public class Config {
 	public static final int HEIGHT = 90;
 
 	// Number of time in seconds per generation
-	public static final double TIME_PER_GENERATION = 35.0;
+	public static final double TIME_PER_GENERATION = 20.0;
 
 	// Oparque walls - or portal behavior
 	public static final boolean WALL_PORTAL = true;
@@ -119,23 +120,23 @@ public class Config {
 	public static final boolean HALL_OF_FAME = true;
 
 	// Plot diversity information in a graph (sever performance penalty (50%) )
-	public static final boolean PLOT_DIVERSITY = false;
+	public static final boolean PLOT_DIVERSITY = true;
 	
 	// allow predator to move
-	public static final boolean PRED_MOVEMENT = false;
+	public static final boolean PRED_MOVEMENT = true;
 
 	// Selection function for crossover (performance penalty)
-	public static final Selection2 SELECTION = new TournamentSelection();
+	public static final Selection2 SELECTION = new RankSelection();
 
 	/// Crossover function
-	public static final Crossover2 CROSSOVER = new OnePoint();
+	public static final Crossover2 CROSSOVER = new UniformNeuronCrossover();
 
 	// Mutation function
 	public static final Mutation MUTATION = new UniformMutation();
 
-	public static final float MUTATION_RATE = 0.005f;
+	public static final float MUTATION_RATE = 0.015f;
 													// NUM_INDIVIDUALS_PREY;
-	public static final double MUTATION_RANGE = 0.25f;
+	public static final double MUTATION_RANGE = 0.05f;
 	/*----------------------------------------------------------------*/
 
 	// Selection function for the remaining individuals

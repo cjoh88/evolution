@@ -67,8 +67,9 @@ public class Animal implements Food {
 		// this.ann = new NeuralNetwork(sensors.length, sensors.length * 2,
 		// actions.length);
 
-		this.ann = new MultiLayerPerceptron(TransferFunctionType.GAUSSIAN, sensors.length, sensors.length*2,
+		this.ann = new MultiLayerPerceptron(TransferFunctionType.SIGMOID, sensors.length, sensors.length*5,
 				actions.length);
+		this.ann.connectInputsToOutputs();
 
 		this.fitness = 0;
 	}

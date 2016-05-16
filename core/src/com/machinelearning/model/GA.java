@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import com.machinelearning.Utility;
 import com.machinelearning.model.crossover.Crossover2;
 import com.machinelearning.model.mutation.Mutation;
 import com.machinelearning.model.selection.Selection2;
@@ -41,6 +42,9 @@ public class GA {
 		int numElitism;
 		int numIndividuals = pop.length;
 		
+		//if(pop[0].getEnvironment().getGeneration() % 10 == 9) {
+		//	Utility.sortNodes3(pop);
+		//}
 		
 		for (Animal animal : pop) {
 			animal.alive = true;
@@ -63,7 +67,10 @@ public class GA {
 
 		Arrays.sort(pop, fitnessComparator);
 		System.out.println(pop[0].fitness());
-
+		if(pop[0].getEnvironment().getGeneration() % 10 == 9) {
+			Utility.normalizeWeights(pop);
+			Utility.sortNodes3(pop);
+		}
 		highestFitness = pop[0];
 		
 		if(highestFitness == null || hallOfFame == null || hallOfFame.fitness<highestFitness.fitness)
