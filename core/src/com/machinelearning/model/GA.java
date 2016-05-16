@@ -116,6 +116,7 @@ public class GA {
 
 		if(Config.HALL_OF_FAME){
 			pop[pop.length-1] = hallOfFame.copy();
+			pop[pop.length-1].setFitness(0);
 			pop[pop.length-1].alive = true;
 		}
 	}
