@@ -43,12 +43,12 @@ public class TournamentSelection implements Selection2 {
 		
 		/*This to avoid getting stuck in a infinite loop incase individuals are lower than the tourneypool */
 		int alreadyPickedTries = 0;
-		int MaximimumTries = 10; 
+		int maxTries = 10; 
 		
 		for(int i =0; i<tournamentPoolSize; i++){
 			Animal newAnimal =  input[(int)(Math.random() * input.length)];
 			
-			if(alreadyPickedTries < 10 && alreadyPicked(tournamentPool,newAnimal)){ 
+			if(alreadyPickedTries < maxTries && alreadyPicked(tournamentPool,newAnimal)){ 
 				i--;
 				alreadyPickedTries++;
 			}
