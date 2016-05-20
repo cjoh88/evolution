@@ -25,10 +25,14 @@ public class PhenotypeDiversity implements Diversity {
 		// Generates values based on sensor order being x as odd and y as even
 
 		for (int i = 0; i < AMOUNT_OF_TESTS; i++) {
-			for (int d = 0; d < AMOUNT_OF_INPUTS/2; d=d+2) {
+			for (int d = 0; d < AMOUNT_OF_INPUTS; d++) {
 				
-				testInputs[i][d] = Utility.random.nextDouble();    //X
-				testInputs[i][d+1] = Math.sqrt(1-Math.pow(testInputs[i][d], 2)); //Y
+				if(d%2 == 0){
+					testInputs[i][d] = Utility.random.nextDouble();    //X
+				}
+				else{
+					testInputs[i][d] = Math.sqrt(1-Math.pow(testInputs[i][d], 2)); //Y
+				}
 			}
 
 		}
