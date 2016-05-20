@@ -1,8 +1,8 @@
 package com.machinelearning.model.sensor;
 
-import com.badlogic.gdx.math.Vector2;
 import com.machinelearning.model.Animal;
 import com.machinelearning.model.Config;
+import com.machinelearning.model.Plant;
 
 public class AnimalDistanceSensor extends Sensor {
 
@@ -19,9 +19,12 @@ public class AnimalDistanceSensor extends Sensor {
 		if (c == 'p') {
 			a = environment.getNearestPredator(animal);
 			f = environment.findDistance(animal.getPosition(), a.getPosition());
-		} else {
+		} else if(c=='d') {
 			a = environment.getNearestAnimal(animal);
 			f = environment.findDistance(animal.position, a.position);
+		}else{
+			Plant ab = environment.getNearestPlant(animal.getPosition());
+			f = environment.findDistance(animal.position, ab.position);
 		}
 
 		/*Vector2 target = new Vector2();

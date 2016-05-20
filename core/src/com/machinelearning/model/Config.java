@@ -162,6 +162,6 @@ public class Config {
 			new PlantDirectionSensor('x'), // Sense closest foods direction x
 			new PlantDirectionSensor('y'), // Sense closest foods direction y
 			new PreyDirectionSensor('x'), new PreyDirectionSensor('y'), new PredatorDirectionSensor('x'),
-			new PredatorDirectionSensor('y'), new AnimalDistanceSensor('p'), new AnimalDistanceSensor('d') };
+			new PredatorDirectionSensor('y'), new AnimalDistanceSensor('p'), new AnimalDistanceSensor('d'), new AnimalDistanceSensor('e') };
 
 }
