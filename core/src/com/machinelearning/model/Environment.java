@@ -79,7 +79,7 @@ public class Environment {
 
 		if(Config.INIT_SET_GENOME_PRED)
 			for (int i = 0; i < pred.length; i++)
-				prey[i].setGenome(Config.INIT_GENOME_PRED);
+				pred[i].setGenome(Config.INIT_GENOME_PRED);
 		
 		
 		if (Config.PLOT_STATS) {
